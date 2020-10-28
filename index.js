@@ -17,13 +17,13 @@ window.open(
 var palabras = prompt("Indica las palabras separadas por coma (',')");
 console.log(palabras);
 
-if (palabras === "") {
-    //si el usuario no idncia palabras escogeremos una de un Array Predefinido
-    var ListadoPreDefinido = ["CASA", "MANZANA", "COCHE"];
-    palabraelegida =
-        ListadoPreDefinido[Math.floor(Math.random() * ListadoPreDefinido.length)];
-    //cogemos un valor aleatorio de el array predefinido
-    console.log(palabraelegida);
+if (palabras === "") { //compara el valor y el tipo
+  //si el usuario no idncia palabras escogeremos una de un Array Predefinido
+  var ListadoPreDefinido = ["CASA", "MANZANA", "COCHE"];
+  palabraelegida =
+    ListadoPreDefinido[Math.floor(Math.random() * ListadoPreDefinido.length)];
+  //cogemos un valor aleatorio de el array predefinido
+  console.log(palabraelegida);
 } else {
     listadoPalabras = palabras.trim().toUpperCase().split([","]); //trim quitar espacios delante y detras del prompt,
     //split separa el String en un array a partir del simbolo que le pasamos
