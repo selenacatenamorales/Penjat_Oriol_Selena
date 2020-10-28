@@ -5,8 +5,17 @@ window.open("pagina_cuaternaria.html", "estadisticas", "left=100px, height=50px,
 var palabras = prompt("Indica las palabras separadas por coma (',')");
 console.log(palabras);
 
-listadoPalabras = palabras.trim().split([","]);
+if (palabras == null){ //si el usuario no idncia palabras escogeremos una de un Array Predefinido
+    var ListadoPreDefinido = ["casa", "manzana", "coche"];
+    palabraelegida = ListadoPreDefinido[Math.floor(Math.random() * ListadoPreDefinido.length)];
+    //cogemos un valor aleatorio de el array predefinido
+    console.log(palabraelegida);
+}
+
+listadoPalabras = palabras.trim().split([","]); //trim quitar espacios delante y detras del prompt, 
+//split separa el String en un array a partir del simbolo que le pasamos
 console.log(listadoPalabras);
 
-var palabraelegida = listadoPalabras[Math.floor(Math.random() * listadoPalabras.length)];
+var palabraelegida = listadoPalabras[Math.floor(Math.random() * listadoPalabras.length)]; //cogemos un valor aleatorio de el array 
+//formado por el usuario
 console.log(palabraelegida);
