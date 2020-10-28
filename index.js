@@ -17,7 +17,7 @@ window.open(
 var palabras = prompt("Indica las palabras separadas por coma (',')");
 console.log(palabras);
 
-if (palabras === "") {
+if (palabras === "") { //compara el valor y el tipo
   //si el usuario no idncia palabras escogeremos una de un Array Predefinido
   var ListadoPreDefinido = ["CASA", "MANZANA", "COCHE"];
   palabraelegida =
