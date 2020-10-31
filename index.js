@@ -36,7 +36,4 @@ if (palabras === "") { //compara el valor y el tipo
     console.log(palabraelegida);
 }
 
-Document.getElementbyID("start").addEventListener("click", introducirLetra());
-function introducirLetra() {
-    introducirletra = prompt("Introduce una letra");//
-}
+document.getElementById("començar").addEventListener("click", console.log("De momento funciona"))
