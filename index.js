@@ -42,5 +42,5 @@ document.getElementById("començar").addEventListener("click", introduirLletra);
 
 function introduirLletra(){ //amb aquesta funció guardem el valor del quadre de text en una variable.
   var lletra =document.getElementById("lletra").value;
-  console.log(lletra);
+  console.log(lletra)
 }
