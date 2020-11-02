@@ -14,7 +14,7 @@ window.open(
     "left=100px, height=50px, resizable=false"
 );
 
-var palabras = prompt("Indica las palabras separadas por coma (',')");
+var palabras = prompt("Indica les paraules separades per comes (',')");
 console.log(palabras);
 
 if (palabras === "") { //compara el valor y el tipo
