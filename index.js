@@ -1,9 +1,10 @@
+
 window.open(
     "pagina_secundaria.html",
     "dibuix",
     "left=100px, height=50px, resizable=false"
 );
-window.open(
+pagina_terciaria = window.open(
     "pagina_terciaria.html",
     "palabra",
     "left=100px, height=50px, resizable=false"
@@ -39,8 +40,12 @@ if (palabras === "") { //compara el valor y el tipo
 //serveix per introduir lletres a la paraula que s'ha d'esbrinar
 document.getElementById("començar").addEventListener("click", introduirLletra);
 //escribim una lletra al quadre de text, fem click al botó introduir lletra i cirdem a la funció introduirLletra
-
+var lletra = "";
 function introduirLletra(){ //amb aquesta funció guardem el valor del quadre de text en una variable.
-  var lletra =document.getElementById("lletra").value;
+  lletra = document.getElementById("lletra").value;
   console.log(lletra)
 }
+
+
+
+
