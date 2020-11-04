@@ -11,5 +11,7 @@ document.getElementById("lletres").innerText = cadena; //mostrem la cadena en l'
 
 var EsCorrecte;
 if(lletra.indexOf() == introduirLletra()){
-     cadena = EsCorrecte.replace(_,lletra);
+     cadena = EsCorrecte.replace('_',lletra);
 }; 
+
+//Aquí lo que estoy intentando es reemplazar los guiones por la letra correcta 
