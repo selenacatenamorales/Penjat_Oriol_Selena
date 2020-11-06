@@ -50,3 +50,5 @@ function introduirLletra(){ //amb aquesta funció guardem el valor del quadre de
 
 
 
+
+
