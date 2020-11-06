@@ -41,14 +41,15 @@ var TamañoPalabra = palabraelegida.length; //cogemos el tamaño de la palabra p
 console.log(TamañoPalabra);
 
  //crea el array inicial de la palabra sin descubrir
- palabraD = [];
- for(i=0; i<TamañoPalabra; i++){
+ var cadena = "";
+ var palabraD = [];
+ for(i=0; i<TamañoPalabra; i++){  //omplim l'array inicialment amb guions baixos (_)
    palabraD[i] = "_"
+   cadena =  cadena + " " + palabraD[i]; //formem una cadena amb els _ i espais per
+                                          //diferenciar bé les lletres
  }
- console.log(palabraD)
- enviarArray(PalabraD);
-
-
+ pagina_terciaria.document.getElementById("lletres").innerText = cadena; //mostrem la cadena en l'element p amb id lletres
+ console.log(palabraD);
 
 
 //serveix per introduir lletres a la paraula que s'ha d'esbrinar
@@ -61,14 +62,14 @@ function introduirLletra(){ //amb aquesta funció guardem el valor del quadre de
   enviarArray(palabraD, lletra);
 }
 
-function enviarArray (PalabraD, Lletra = null){
+function enviarArray (PalabraD, Lletra){
   for(i=0; i<PalabraD.length; i++){
-    if(palabraelegida.index(i) == Lletra){
+    if(palabraelegida.indexOf(i) == Lletra){
       PalabraD[i] = Lletra;
     }
-    cadena =  cadena + " " + lletresPerDescobrir[i]
+    cadena =  cadena + " " + PalabraD[i]
   }
-  pagina_terciaria.window.document.getElementById("lletres").innerText = cadena;
+  pagina_terciaria.window.document.getElementById("lletres").innerHTML = cadena;
 }
 
 
