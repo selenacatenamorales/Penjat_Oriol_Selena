@@ -37,10 +37,12 @@ if (palabras === "") { //compara el valor y el tipo
     console.log(palabraelegida);
 }
 
+
+
 //serveix per introduir lletres a la paraula que s'ha d'esbrinar
-document.getElementById("començar").addEventListener("click", introduirLletra);
+document.getElementById("introduir_lletra").addEventListener("click", introduirLletra);
 //escribim una lletra al quadre de text, fem click al botó introduir lletra i cirdem a la funció introduirLletra
-var lletra = "";
+
 function introduirLletra(){ //amb aquesta funció guardem el valor del quadre de text en una variable.
   lletra = document.getElementById("lletra").value;
   console.log(lletra)
