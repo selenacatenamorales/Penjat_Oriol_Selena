@@ -1,18 +1,17 @@
-
 pagina_secundaria = window.open(
     "pagina_secundaria.html",
     "dibuix",
-    "left=100px, height=50px, resizable=false"
+    "left=1250px, width=300px, height=300px, resizable=false"
 );
 pagina_terciaria = window.open(
     "pagina_terciaria.html",
     "palabra",
-    "left=100px, height=50px, resizable=false"
+    "left=1250px, top=500px, width=300px, height=300px, resizable=false"
 );
 pagina_cuaternaria = window.open(
     "pagina_cuaternaria.html",
     "estadisticas",
-    "left=100px, height=50px, resizable=false"
+    "left=850px, top=300px, width=300px, height=300px, resizable=false"
 );
 
 var palabras = prompt("Indica les paraules separades per comes (',')");
