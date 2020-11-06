@@ -1,5 +1,5 @@
 
-window.open(
+pagina_secundaria = window.open(
     "pagina_secundaria.html",
     "dibuix",
     "left=100px, height=50px, resizable=false"
@@ -9,7 +9,7 @@ pagina_terciaria = window.open(
     "palabra",
     "left=100px, height=50px, resizable=false"
 );
-window.open(
+pagina_cuaternaria = window.open(
     "pagina_cuaternaria.html",
     "estadisticas",
     "left=100px, height=50px, resizable=false"
