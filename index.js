@@ -37,6 +37,18 @@ if (palabras === "") { //compara el valor y el tipo
     console.log(palabraelegida);
 }
 
+var TamañoPalabra = palabraelegida.length; //cogemos el tamaño de la palabra por descubrir;
+console.log(TamañoPalabra);
+
+ //crea el array inicial de la palabra sin descubrir
+ palabraD = [];
+ for(i=0; i<TamañoPalabra; i++){
+   palabraD[i] = "_"
+ }
+ console.log(palabraD)
+ enviarArray(PalabraD);
+
+
 
 
 //serveix per introduir lletres a la paraula que s'ha d'esbrinar
@@ -45,7 +57,18 @@ document.getElementById("introduir_lletra").addEventListener("click", introduirL
 
 function introduirLletra(){ //amb aquesta funció guardem el valor del quadre de text en una variable.
   lletra = document.getElementById("lletra").value;
-  console.log(lletra)
+  console.log(lletra);
+  enviarArray(palabraD, lletra);
+}
+
+function enviarArray (PalabraD, Lletra = null){
+  for(i=0; i<PalabraD.length; i++){
+    if(palabraelegida.index(i) == Lletra){
+      PalabraD[i] = Lletra;
+    }
+    cadena =  cadena + " " + lletresPerDescobrir[i]
+  }
+  pagina_terciaria.window.document.getElementById("lletres").innerText = cadena;
 }
 
 
@@ -53,7 +76,7 @@ function introduirLletra(){ //amb aquesta funció guardem el valor del quadre de
 
 
 
-
+/*
 var lletresPerDescobrir =[]; //array amb totes les lletres que pot descobrir l'usuari
 var cadena = "";
 
@@ -69,3 +92,4 @@ var EsCorrecte;
 if(lletra.indexOf() == introduirLletra()){
      cadena = EsCorrecte.replace('_',lletra);
 }; //Aquí lo que estoy intentando es reemplazar los guiones por la letra correcta 
+*/
