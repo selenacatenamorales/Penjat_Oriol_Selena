@@ -56,7 +56,8 @@ document.getElementById("introduir_lletra").addEventListener("click", introduirL
 //escribim una lletra al quadre de text, fem click al botó introduir lletra i cirdem a la funció introduirLletra
 
 function introduirLletra(){ 
-  lletra = document.getElementById("lletra").value; //guardem el valor del quadre de text en una variable.
+  lletra = document.getElementById("lletra").value; //guardem el valor del quadre de text en una variable i la pasem a 
+     lletra = lletra.toUpperCase();     //majuscules per evitar errors
   console.log(lletra);
   var pos = palabraelegida.indexOf(lletra); //busquem la posició on esta situada la lletra que 
                                              //ha introduit l'usuari en la paraula per endivinar.
