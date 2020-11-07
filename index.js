@@ -17,7 +17,7 @@ pagina_cuaternaria = window.open(
 var palabras = prompt("Indica les paraules separades per comes (',')");
 console.log(palabras);
 
-if (palabras === "") { //compara el valor y el tipo
+if (palabras === "" | palabras == null) { //compara el valor y el tipo
   //si el usuario no idncia palabras escogeremos una de un Array Predefinido
   var ListadoPreDefinido = ["CASA", "MANZANA", "COCHE"];
   palabraelegida =
@@ -55,21 +55,32 @@ console.log(TamañoPalabra);
 document.getElementById("introduir_lletra").addEventListener("click", introduirLletra);
 //escribim una lletra al quadre de text, fem click al botó introduir lletra i cirdem a la funció introduirLletra
 
-function introduirLletra(){ //amb aquesta funció guardem el valor del quadre de text en una variable.
-  lletra = document.getElementById("lletra").value;
+function introduirLletra(){ 
+  lletra = document.getElementById("lletra").value; //guardem el valor del quadre de text en una variable.
   console.log(lletra);
-  enviarArray(palabraD, lletra);
+  var pos = palabraelegida.indexOf(lletra); //busquem la posició on esta situada la lletra que 
+                                             //ha introduit l'usuari en la paraula per endivinar.
+  while (pos !== -1) {  //mentres la posició de la lletra sigui -1, és a dir, que esta en la paraula per endevinar.
+    palabraD[pos] = lletra; //subsituirem en l'array el guio per la lletra corresponent
+    pos = palabraelegida.indexOf(lletra, pos + 1); //indiquem que busqui la nova posició de la lletra a partir de la anterior + 
+                                                      // és a dir si la lletra estaba en la pos 2, seguirem buscant a partir de la pos 3
+  }
+  console.log(palabraD);
+  mostrarcadena();
 }
 
-function enviarArray (PalabraD, Lletra){
-  for(i=0; i<PalabraD.length; i++){
-    if(palabraelegida.indexOf(i) == Lletra){
-      PalabraD[i] = Lletra;
-    }
-    cadena =  cadena + " " + PalabraD[i]
-  }
-  pagina_terciaria.window.document.getElementById("lletres").innerHTML = cadena;
+function mostrarcadena(){
+  console.log
+  cadena = ""; //buidem la cadena per a sobrescriure-la
+for(i=0; i<palabraD.length; i++){   //funcio per mostrar l'array de la paraula que estem descobrint.
+   cadena =  cadena + " " + palabraD[i];                                         
+ }
+ console.log(cadena);
+ pagina_terciaria.window.document.getElementById("lletres").innerText = cadena;
 }
+  
+  
+
 
 
 
