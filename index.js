@@ -58,12 +58,14 @@ function novaparaula(){
   var palabraelegida =
   listadoPalabras[Math.floor(Math.random() * listadoPalabras.length)];
   console.log(palabraelegida);
+  console.log((palabraelegida.length));
   }
    mostrarcadenavacia(palabraelegida.length);
 }
 
 function mostrarcadenavacia(TamañoPalabra){
   cadena = "";
+  palabraD = [""];
   for(i=0; i<TamañoPalabra; i++){  //omplim l'array inicialment amb guions baixos (_)
   palabraD[i] = "_"
   cadena =  cadena + " " + palabraD[i]; //formem una cadena amb els _ i espais per
