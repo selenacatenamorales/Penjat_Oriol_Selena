@@ -14,6 +14,8 @@ pagina_cuaternaria = window.open(
     "left=850px, top=300px, width=300px, height=300px, resizable=false"
 );
 
+var cadena = "";
+var palabraD = [];
 var palabras = prompt("Indica les paraules separades per comes (',')");
 console.log(palabras);
 
@@ -24,6 +26,7 @@ if (palabras === "" | palabras == null) { //compara el valor y el tipo
     ListadoPreDefinido[Math.floor(Math.random() * ListadoPreDefinido.length)];
   //cogemos un valor aleatorio de el array predefinido
   console.log(palabraelegida);
+  mostrarcadenavacia(palabraelegida.length);
 } else {
     listadoPalabras = palabras.trim().toUpperCase().split([","]); //trim quitar espacios delante y detras del prompt,
     //split separa el String en un array a partir del simbolo que le pasamos
@@ -34,26 +37,42 @@ if (palabras === "" | palabras == null) { //compara el valor y el tipo
         listadoPalabras[Math.floor(Math.random() * listadoPalabras.length)]; //cogemos un valor aleatorio de el array
     //formado por el usuario
     console.log(palabraelegida);
+    mostrarcadenavacia(palabraelegida.length);
 }
-
-var TamañoPalabra = palabraelegida.length; //cogemos el tamaño de la palabra por descubrir;
-console.log(TamañoPalabra);
-
- //crea el array inicial de la palabra sin descubrir
- var cadena = "";
- var palabraD = [];
- for(i=0; i<TamañoPalabra; i++){  //omplim l'array inicialment amb guions baixos (_)
-   palabraD[i] = "_"
-   cadena =  cadena + " " + palabraD[i]; //formem una cadena amb els _ i espais per
-                                          //diferenciar bé les lletres
- }
- pagina_terciaria.document.getElementById("lletres").innerText = cadena; //mostrem la cadena en l'element p amb id lletres
- console.log(palabraD);
-
 
 //serveix per introduir lletres a la paraula que s'ha d'esbrinar
 document.getElementById("introduir_lletra").addEventListener("click", introduirLletra);
 //escribim una lletra al quadre de text, fem click al botó introduir lletra i cirdem a la funció introduirLletra
+
+//serveix per introduir lletres a la paraula que s'ha d'esbrinar
+document.getElementById("tornar").addEventListener("click", novaparaula);
+//escribim una lletra al quadre de text, fem click al botó introduir lletra i cirdem a la funció introduirLletra
+
+function novaparaula(){
+  if (palabras === "" | palabras == null){
+  palabraelegida =
+    ListadoPreDefinido[Math.floor(Math.random() * ListadoPreDefinido.length)];
+    console.log(palabraelegida);
+  }
+  else{
+  var palabraelegida =
+  listadoPalabras[Math.floor(Math.random() * listadoPalabras.length)];
+  console.log(palabraelegida);
+  }
+   mostrarcadenavacia(palabraelegida.length);
+}
+
+function mostrarcadenavacia(TamañoPalabra){
+  cadena = "";
+  for(i=0; i<TamañoPalabra; i++){  //omplim l'array inicialment amb guions baixos (_)
+  palabraD[i] = "_"
+  cadena =  cadena + " " + palabraD[i]; //formem una cadena amb els _ i espais per
+                                         //diferenciar bé les lletres
+}
+console.log(TamañoPalabra);
+pagina_terciaria.document.getElementById("lletres").innerText = cadena; //mostrem la cadena en l'element p amb id lletres
+console.log(palabraD);
+}
 
 function introduirLletra(){ 
   lletra = document.getElementById("lletra").value; //guardem el valor del quadre de text en una variable i la pasem a 
