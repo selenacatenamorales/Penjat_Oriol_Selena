@@ -33,7 +33,7 @@ if (palabras === "" | palabras == null) { //compara el valor y el tipo
     //toUpperCase funciona para pasar el listado de palabras a mayusculas para evitar errores.
     console.log(listadoPalabras);
 
-    var palabraelegida =
+    palabraelegida =
         listadoPalabras[Math.floor(Math.random() * listadoPalabras.length)]; //cogemos un valor aleatorio de el array
     //formado por el usuario
     console.log(palabraelegida);
@@ -49,6 +49,7 @@ document.getElementById("tornar").addEventListener("click", novaparaula);
 //escribim una lletra al quadre de text, fem click al botó introduir lletra i cirdem a la funció introduirLletra
 
 function novaparaula(){
+  palabraD = []; //buidem l'array de la paraula per descobrir
   if (palabras === "" | palabras == null){
   palabraelegida =
     ListadoPreDefinido[Math.floor(Math.random() * ListadoPreDefinido.length)];
@@ -58,14 +59,13 @@ function novaparaula(){
   var palabraelegida =
   listadoPalabras[Math.floor(Math.random() * listadoPalabras.length)];
   console.log(palabraelegida);
-  console.log((palabraelegida.length));
   }
    mostrarcadenavacia(palabraelegida.length);
 }
 
 function mostrarcadenavacia(TamañoPalabra){
   cadena = "";
-  palabraD = [""];
+  palabraD = [];
   for(i=0; i<TamañoPalabra; i++){  //omplim l'array inicialment amb guions baixos (_)
   palabraD[i] = "_"
   cadena =  cadena + " " + palabraD[i]; //formem una cadena amb els _ i espais per
@@ -100,6 +100,6 @@ for(i=0; i<palabraD.length; i++){   //funcio per mostrar l'array de la paraula q
  console.log(cadena);
  pagina_terciaria.window.document.getElementById("lletres").innerText = cadena;
 }
-  
+
   
 
