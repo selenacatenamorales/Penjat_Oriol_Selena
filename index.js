@@ -13,7 +13,8 @@ pagina_cuaternaria = window.open(
     "estadisticas",
     "left=850px, top=300px, width=300px, height=300px, resizable=false"
 );
-
+var contador = 0;
+var perdido = "Has perdido";
 var cadena = "";
 var palabraD = [];
 var palabras = prompt("Indica les paraules separades per comes (',')");
@@ -56,10 +57,12 @@ function novaparaula(){
     console.log(palabraelegida);
   }
   else{
-  var palabraelegida =
+  palabraelegida =
   listadoPalabras[Math.floor(Math.random() * listadoPalabras.length)];
   console.log(palabraelegida);
   }
+  pagina_secundaria.document.getElementById("imagen").src = "img1.jpg"
+  contador = 0;
    mostrarcadenavacia(palabraelegida.length);
 }
 
@@ -82,11 +85,35 @@ function introduirLletra(){
   console.log(lletra);
   var pos = palabraelegida.indexOf(lletra); //busquem la posició on esta situada la lletra que 
                                              //ha introduit l'usuari en la paraula per endivinar.
+  if (pos ==-1){
+    contador ++;
+    switch (contador) { //sirve para cambiar el src de la imagen al fallar, se controla gracias al contador
+      case 1:
+        pagina_secundaria.document.getElementById("imagen").src = "img2.jpg"
+        break;
+        case 2:
+          pagina_secundaria.document.getElementById("imagen").src = "img3.jpg"
+          break;
+          case 3:
+            pagina_secundaria.document.getElementById("imagen").src = "img4.jpg"
+            break;
+            case 4:
+              pagina_secundaria.document.getElementById("imagen").src = "img5.jpg"
+              break;
+              case 5:
+                pagina_secundaria.document.getElementById("imagen").src = "img6.jpg"
+                pagina_terciaria.document.getElementById("lletres").innerText = perdido;
+                break;
+    }
+    
+  }
+  else{                                       
   while (pos !== -1) {  //mentres la posició de la lletra sigui -1, és a dir, que esta en la paraula per endevinar.
     palabraD[pos] = lletra; //subsituirem en l'array el guio per la lletra corresponent
     pos = palabraelegida.indexOf(lletra, pos + 1); //indiquem que busqui la nova posició de la lletra a partir de la anterior + 
                                                       // és a dir si la lletra estaba en la pos 2, seguirem buscant a partir de la pos 3
   }
+}
   console.log(palabraD);
   mostrarcadena();
 }
