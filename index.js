@@ -52,6 +52,8 @@ document.getElementById("tornar").addEventListener("click", novaparaula);
 //escribim una lletra al quadre de text, fem click al botó introduir lletra i cirdem a la funció introduirLletra
 
 function novaparaula(){
+  setTimeout(function(){ alert("Gràcies per esperar-te 5 segons"); }, 5000);
+
   palabraD = []; //buidem l'array de la paraula per descobrir
   if (palabras === "" | palabras == null){
   palabraelegida =
