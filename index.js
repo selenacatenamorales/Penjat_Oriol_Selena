@@ -13,10 +13,21 @@ pagina_cuaternaria = window.open(
     "estadisticas",
     "left=850px, top=300px, width=300px, height=300px, resizable=false"
 );
+
+
+document.cookie = "PartidasG = 0; expires=Thu, 3 Dec 2020 12:00:00 UTC,"; //creació cookie partides guanyades
+document.cookie = "PartidasP = 0; expires=Thu, 3 Dec 2020 12:00:00 UTC"; //creació cookie partides perdudes
+document.cookie = "PartidasA = 0; expires=Thu, 3 Dec 2020 12:00:00 UTC"; ////creació cookie partides abandonades
+
+console.log(document.cookie);
+
+pagina_cuaternaria.document.getElementById("partidesG").innerText = "Partides guanyades: 1232323";
+pagina_cuaternaria.document.getElementById("partidesP").innerText = "Partides guanyades: 1232323";
+pagina_cuaternaria.document.getElementById("partidesA").innerText = "Partides guanyades: 1232323";
+
+
+
 var contador = 0;
-var contadorPartidasG = 1;
-var contadorPartidasP = 1;
-var perdido = "Has perdido";
 var cadena = "";
 var palabraD = [];
 var palabras = prompt("Indica les paraules separades per comes (',')");
@@ -52,6 +63,7 @@ document.getElementById("tornar").addEventListener("click", novaparaula);
 //escribim una lletra al quadre de text, fem click al botó introduir lletra i cirdem a la funció introduirLletra
 
 function novaparaula(){
+  alert("Espera mentres preparem la nova paraula");
   setTimeout(function(){ alert("Gràcies per esperar-te 5 segons"); }, 5000); //setTimeout executa l’expressió passats msec mil·lisegons.
                                                                             //L'usuari ha d'esperar-se al passar 5 segons si vol tornar a començar el joc
 
@@ -66,7 +78,7 @@ function novaparaula(){
   listadoPalabras[Math.floor(Math.random() * listadoPalabras.length)];
   console.log(palabraelegida);
   }
-  pagina_secundaria.document.getElementById("imagen").src = "img1.jpg"
+  pagina_secundaria.document.getElementById("imagen").src = "img1.jpg";
   contador = 0;
    mostrarcadenavacia(palabraelegida.length);
 }
@@ -107,8 +119,12 @@ function introduirLletra(){
               break;
               case 5:
                 pagina_secundaria.document.getElementById("imagen").src = "img6.jpg"
-                pagina_terciaria.document.getElementById("lletres").innerText = perdido;
-                pagina_cuaternaria.document.getElementById("partidesP").innerText = "Partides perdudes" + contadorPartidasP++;
+                var x = parseInt(document.cookie[1]); 
+                document.cookie[1] = x ++;
+                console.log(document.cookie);
+                alert("Espera mentres preparem la nova paraula, més sort la proxima vegada");
+                setTimeout(function(){ alert("Gràcies per esperar-te 10 segons"); }, 10000);
+                
                 break;
     }
     
@@ -134,15 +150,15 @@ for(i=0; i<palabraD.length; i++){   //funcio per mostrar l'array de la paraula q
  pagina_terciaria.window.document.getElementById("lletres").innerText = cadena;
 }
 
-var guanyades = document.getElementById("partidesG");
-function partidas_ganadas(){
-  if(cadena == palabraD.length){
-    guanyades = "Partides Guanyades: "+ contadorPartidas++;
-  }
+//var guanyades = document.getElementById("partidesG");
+//function partidas_ganadas(){
+ // if(cadena == palabraD.length){
+  //  guanyades = "Partides Guanyades: "+ contadorPartidas++;
+ // }
 
-}
+//}
 
-function partidas_perdidas(){
-  if(a == b);
-}
+//function partidas_perdidas(){
+ // if(a == b);
+//}
 
