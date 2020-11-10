@@ -14,6 +14,8 @@ pagina_cuaternaria = window.open(
     "left=850px, top=300px, width=300px, height=300px, resizable=false"
 );
 var contador = 0;
+var contadorPartidasG = 1;
+var contadorPartidasP = 1;
 var perdido = "Has perdido";
 var cadena = "";
 var palabraD = [];
@@ -103,6 +105,7 @@ function introduirLletra(){
               case 5:
                 pagina_secundaria.document.getElementById("imagen").src = "img6.jpg"
                 pagina_terciaria.document.getElementById("lletres").innerText = perdido;
+                pagina_cuaternaria.document.getElementById("partidesP").innerText = "Partides perdudes" + contadorPartidasP++;
                 break;
     }
     
@@ -128,5 +131,15 @@ for(i=0; i<palabraD.length; i++){   //funcio per mostrar l'array de la paraula q
  pagina_terciaria.window.document.getElementById("lletres").innerText = cadena;
 }
 
-  
+var guanyades = document.getElementById("partidesG");
+function partidas_ganadas(){
+  if(cadena == palabraD.length){
+    guanyades = "Partides Guanyades: "+ contadorPartidas++;
+  }
+
+}
+
+function partidas_perdidas(){
+  if(a == b);
+}
 
