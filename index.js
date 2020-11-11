@@ -22,9 +22,7 @@ var partidasA = document.cookie = "PartidasA = 0; expires=Thu, 3 Dec 2020 12:00:
 console.log(document.cookie);
 
 
-//pagina_cuaternaria.document.getElementById("partidesG").innerText = "Partides guanyades: 1232323";
-//pagina_cuaternaria.document.getElementById("partidesP").innerText = "Partides guanyades: 1232323";
-//pagina_cuaternaria.document.getElementById("partidesA").innerText = "Partides guanyades: 1232323";
+
 
 
 
@@ -169,3 +167,6 @@ for(i=0; i<palabraD.length; i++){   //funcio per mostrar l'array de la paraula q
  // if(a == b);
 //}
 
+//pagina_cuaternaria.document.getElementById("partidesG").innerText = "Partides guanyades: 1232323";
+//pagina_cuaternaria.document.getElementById("partidesP").innerText = "Partides guanyades: 1232323";
+//pagina_cuaternaria.document.getElementById("partidesA").innerText = "Partides guanyades: 1232323";
