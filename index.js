@@ -1,3 +1,4 @@
+
 pagina_secundaria = window.open(
     "pagina_secundaria.html",
     "dibuix",
@@ -152,14 +153,12 @@ function introduirLletra(){
               break;
               case 5:
                 pagina_secundaria.document.getElementById("imagen").src = "img6.jpg"
-                partidasP++;
+                /*partidasP++;
                 setCookie("PartidasP", partidasP, 10)
                 pagina_terciaria.document.getElementById("lletres").innerText = "HAS PERDUT";
-                alert("Espera mentres preparem la nova paraula, més sort la proxima vegada");
                 setTimeout(function(){alert("Gràcies per esperar-te 10 segons")}, 10000);
                 pagina_cuaternaria.document.getElementById("partidesP").innerText = "Partides perdudes: " + partidasP;//contador de partides perdudes
-                novaparaula();
-                
+                novaparaula(); */
                 break;
     }
     
