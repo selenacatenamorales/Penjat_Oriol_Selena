@@ -14,17 +14,31 @@ pagina_cuaternaria = window.open(
     "left=850px, top=300px, width=300px, height=300px, resizable=false"
 );
 
+pagina_cuaternaria.document.getElementById("partidesG").innerText = "Partides guanyades: 1232323";
+pagina_cuaternaria.document.getElementById("partidesP").innerText = "Partides guanyades: 1232323";
+pagina_cuaternaria.document.getElementById("partidesA").innerText = "Partides guanyades: 1232323";
 
-var partidasG = document.cookie = "PartidasG = 0; expires=Thu, 3 Dec 2020 12:00:00 UTC,"; //creació cookie partides guanyades
-var partidasP = document.cookie = "PartidasP = 0; expires=Thu, 3 Dec 2020 12:00:00 UTC"; //creació cookie partides perdudes
-var partidasA = document.cookie = "PartidasA = 0; expires=Thu, 3 Dec 2020 12:00:00 UTC"; ////creació cookie partides abandonades
 
+//var partidasG = document.cookie = "PartidasG = 0; expires=Thu, 3 Dec 2020 12:00:00 UTC,"; //creació cookie partides guanyades
+document.cookie = "PartidasP = 0; expires=Thu, 3 Dec 2020 12:00:00 UTC"; //creació cookie partides perdudes
+//var partidasA = document.cookie = "PartidasA = 0; expires=Thu, 3 Dec 2020 12:00:00 UTC"; ////creació cookie partides abandonades
+console.log(getCookie("PartidasP"));
+function getCookie(cname) {
+  var name = cname + "=";
+  var decodedCookie = decodeURIComponent(document.cookie);
+  var ca = decodedCookie.split(';');
+  for(var i = 0; i <ca.length; i++) {
+    var c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}
 console.log(document.cookie);
-
-
-
-
-
 
 var contador = 0;
 var cadena = "";
@@ -63,7 +77,7 @@ document.getElementById("tornar").addEventListener("click", novaparaula_temps);
 
 function novaparaula_temps(){
   alert("Espera mentres preparem la nova paraula");
-  setTimeout(function(){ alert("Gràcies per esperar-te"); }, 5000); //setTimeout executa l’expressió passats msec mil·lisegons.
+  setTimeout(function(){ alert("Gràcies per esperar-te 5 segons"); }, 5000); //setTimeout executa l’expressió passats msec mil·lisegons.
   novaparaula();                                                                          //L'usuari ha d'esperar-se al passar 5 segons si vol tornar a començar el joc
 }
 
@@ -101,7 +115,7 @@ console.log(palabraD);
 function introduirLletra(){ 
   lletra = document.getElementById("lletra").value; //guardem el valor del quadre de text en una variable i la pasem a 
   if (lletra !== "" ){   //valida si el textbox conté una lletra
-  lletra = lletra.toUpperCase();     //majuscules per evitar errors
+  lletra = lletra.toUpperCase().trim();     //majuscules per evitar errors
   console.log(lletra);
   var pos = palabraelegida.indexOf(lletra); //busquem la posició on esta situada la lletra que 
                                              //ha introduit l'usuari en la paraula per endivinar.
@@ -125,9 +139,9 @@ function introduirLletra(){
                 //var x = parseInt(document.cookie[1]); 
                 //document.cookie[1] = x ++;
                 //console.log(document.cookie);
-                
-                setTimeout(function(){alert("Espera mentres preparem la nova paraula, més sort la proxima vegada")}, 10000);
-                alert("Gràcies per esperar-te 10 segons");
+                pagina_terciaria.document.getElementById("lletres").innerText = "HAS PERDUT";
+                alert("Espera mentres preparem la nova paraula, més sort la proxima vegada");
+                setTimeout(function(){alert("Gràcies per esperar-te 10 segons")}, 10000);
                 novaparaula()
                 break;
     }
