@@ -60,14 +60,15 @@ document.getElementById("introduir_lletra").addEventListener("click", introduirL
 //escribim una lletra al quadre de text, fem click al botó introduir lletra i cirdem a la funció introduirLletra
 
 //serveix per introduir lletres a la paraula que s'ha d'esbrinar
-document.getElementById("tornar").addEventListener("click", novaparaula);
+document.getElementById("tornar").addEventListener("click", novaparaula_temps);
 //escribim una lletra al quadre de text, fem click al botó introduir lletra i cirdem a la funció introduirLletra
 
-function novaparaula(){
+function novaparaula_temps(){
   alert("Espera mentres preparem la nova paraula");
   setTimeout(function(){ alert("Gràcies per esperar-te"); }, 5000); //setTimeout executa l’expressió passats msec mil·lisegons.
-                                                                            //L'usuari ha d'esperar-se al passar 5 segons si vol tornar a començar el joc
-
+  novaparaula();                                                                          //L'usuari ha d'esperar-se al passar 5 segons si vol tornar a començar el joc
+}
+function novaparaula(){
   palabraD = []; //buidem l'array de la paraula per descobrir
   if (palabras === "" | palabras == null){
   palabraelegida =
@@ -121,12 +122,13 @@ function introduirLletra(){
               break;
               case 5:
                 pagina_secundaria.document.getElementById("imagen").src = "img6.jpg"
-                var x = parseInt(document.cookie[1]); 
-                document.cookie[1] = x ++;
-                console.log(document.cookie);
-                alert("Espera mentres preparem la nova paraula, més sort la proxima vegada");
-                setTimeout(novaparaula(), 5000);
+                //var x = parseInt(document.cookie[1]); 
+                //document.cookie[1] = x ++;
+                //console.log(document.cookie);
                 
+                setTimeout(function(){alert("Espera mentres preparem la nova paraula, més sort la proxima vegada")}, 10000);
+                alert("Gràcies per esperar-te 10 segons");
+                novaparaula()
                 break;
     }
     
