@@ -23,8 +23,8 @@ pagina_cuaternaria = window.open(
 document.cookie = "PartidasP = 0; expires=Thu, 3 Dec 2020 12:00:00 UTC"; //creació cookie partides perdudes
 //var partidasA = document.cookie = "PartidasA = 0; expires=Thu, 3 Dec 2020 12:00:00 UTC"; ////creació cookie partides abandonades
 var partidasP = parseInt(getCookie("PartidasP")); //convierte el numero en formato string a entero
-console.log(partidasP);
-function getCookie(cname) {
+
+function getCookie(cname) {//funcion cookie
   var name = cname + "=";
   var decodedCookie = decodeURIComponent(document.cookie);
   var ca = decodedCookie.split(';');
