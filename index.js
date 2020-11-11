@@ -119,9 +119,11 @@ function introduirLletra(){
               break;
               case 5:
                 pagina_secundaria.document.getElementById("imagen").src = "img6.jpg"
-                var x = parseInt(document.cookie[1]); 
+                /*var x = parseInt(document.cookie[1]); 
                 document.cookie[1] = x ++;
-                console.log(document.cookie);
+                console.log(document.cookie);*/
+                var contadorPartidasP = 1;
+                pagina_cuaternaria.document.getElementById("partidesP").innerText = "Partides perdudes: " + contadorPartidasP++;
                 alert("Espera mentres preparem la nova paraula, més sort la proxima vegada");
                 setTimeout(function(){ alert("Gràcies per esperar-te 10 segons"); }, 10000);
                 
