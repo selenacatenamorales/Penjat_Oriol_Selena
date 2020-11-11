@@ -23,7 +23,7 @@ pagina_cuaternaria = window.open(
 document.cookie = "PartidasP = 0; expires=Thu, 3 Dec 2020 12:00:00 UTC"; //creació cookie partides perdudes
 //var partidasA = document.cookie = "PartidasA = 0; expires=Thu, 3 Dec 2020 12:00:00 UTC"; ////creació cookie partides abandonades
 var partidasP = parseInt(getCookie("PartidasP")); //convierte el numero en formato string a entero
-console.log(partidasP + 1);
+console.log(partidasP);
 function getCookie(cname) {
   var name = cname + "=";
   var decodedCookie = decodeURIComponent(document.cookie);
@@ -38,6 +38,12 @@ function getCookie(cname) {
     }
   }
   return "";
+}
+function setCookie(cname, cvalue, exdays) { //actualizar valor cookie
+  var d = new Date();
+  d.setTime(d.getTime() + (exdays*24*60*60*1000));
+  var expires = "expires="+ d.toUTCString();
+  document.cookie = cname + "=" + cvalue + ";" + expires ;
 }
 console.log(document.cookie);
 
@@ -136,6 +142,8 @@ function introduirLletra(){
               pagina_secundaria.document.getElementById("imagen").src = "img5.jpg"
               break;
               case 5:
+                partidasP++;
+                setCookie("PartidasP", partidasP, 10)
                 pagina_secundaria.document.getElementById("imagen").src = "img6.jpg"
                 pagina_terciaria.document.getElementById("lletres").innerText = "HAS PERDUT";
                 alert("Espera mentres preparem la nova paraula, més sort la proxima vegada");
