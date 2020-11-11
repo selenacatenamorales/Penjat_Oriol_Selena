@@ -18,11 +18,12 @@ pagina_cuaternaria = window.open(
 //pagina_cuaternaria.document.getElementById("partidesP").innerText = "Partides guanyades: 1232323";
 //pagina_cuaternaria.document.getElementById("partidesA").innerText = "Partides guanyades: 1232323";
 
-if (document.cookie === ""){
+if (document.cookie === ""){ //if para controlar si las cookies existen
 document.cookie = "PartidasG = 0; expires=Thu, 3 Dec 2020 12:00:00 UTC,"; //creació cookie partides guanyades
 document.cookie = "PartidasP = 0; expires=Thu, 3 Dec 2020 12:00:00 UTC"; //creació cookie partides perdudes
 document.cookie = "PartidasA = 0; expires=Thu, 3 Dec 2020 12:00:00 UTC"; ////creació cookie partides abandonades
 }
+
 var partidasP = parseInt(getCookie("PartidasP")); //convierte el numero en formato string a entero
 var partidasG = parseInt(getCookie("PartidasG")); //convierte el numero en formato string a entero
 var partidasA = parseInt(getCookie("PartidasA")); //convierte el numero en formato string a entero
@@ -172,13 +173,23 @@ function introduirLletra(){
 }
 
 function mostrarcadena(){
-  console.log
-  cadena = ""; //buidem la cadena per a sobrescriure-la
+  cadena = "";//buidem la cadena per a sobrescriure-la
+  cadena_igual_palabra=""; //buidem la cadena per a sobrescriure-la
 for(i=0; i<palabraD.length; i++){   //funcio per mostrar l'array de la paraula que estem descobrint.
-   cadena =  cadena + " " + palabraD[i];                                         
+   cadena =  cadena + " " + palabraD[i]; 
+   cadena_igual_palabra = cadena_igual_palabra + palabraD[i] ;                                       
  }
+ if (cadena_igual_palabra == palabraelegida){
+  partidasG++;
+  setCookie("PartidasG", partidasG, 10)
+  pagina_terciaria.window.document.getElementById("lletres").innerText = "HAS GANADO";
+  novaparaula();
+ }
+ else{
+ console.log(cadena_igual_palabra);
  console.log(cadena);
  pagina_terciaria.window.document.getElementById("lletres").innerText = cadena;
+ }
 }
 
 //var guanyades = document.getElementById("partidesG");
