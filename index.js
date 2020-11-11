@@ -92,8 +92,9 @@ function novaparaula_temps(){
   alert("Espera mentres preparem la nova paraula");
   setTimeout(function(){ alert("Gràcies per esperar-te 5 segons"); }, 5000); //setTimeout executa l’expressió passats msec mil·lisegons.
   setCookie("PartidasA", partidasA, 10)                                        //L'usuari ha d'esperar-se al passar 5 segons si vol tornar a començar el joc
+  pagina_cuaternaria.document.getElementById("partidesA").innerText = "Partides abandonades: " + partidasA;  
   novaparaula();   
-  pagina_cuaternaria.document.getElementById("partidesA").innerText = "Partides abandonades: " + partidasA;                                                                       
+                                                                       
 }
 
 function novaparaula(){
@@ -156,8 +157,9 @@ function introduirLletra(){
                 pagina_terciaria.document.getElementById("lletres").innerText = "HAS PERDUT";
                 alert("Espera mentres preparem la nova paraula, més sort la proxima vegada");
                 setTimeout(function(){alert("Gràcies per esperar-te 10 segons")}, 10000);
-                novaparaula();
                 pagina_cuaternaria.document.getElementById("partidesP").innerText = "Partides perdudes: " + partidasP;
+                novaparaula();
+                
                 break;
     }
     
@@ -185,7 +187,9 @@ for(i=0; i<palabraD.length; i++){   //funcio per mostrar l'array de la paraula q
   partidasG++;
   setCookie("PartidasG", partidasG, 10)
   pagina_terciaria.window.document.getElementById("lletres").innerText = "HAS GANADO";
+  pagina_cuaternaria.document.getElementById("partidesG").innerText = "Partides guanyades: " + partidasG;
   novaparaula();
+ 
  }
  else{
  console.log(cadena_igual_palabra);
