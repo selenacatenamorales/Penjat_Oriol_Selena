@@ -151,9 +151,9 @@ function introduirLletra(){
               pagina_secundaria.document.getElementById("imagen").src = "img5.jpg"
               break;
               case 5:
+                pagina_secundaria.document.getElementById("imagen").src = "img6.jpg"
                 partidasP++;
                 setCookie("PartidasP", partidasP, 10)
-                pagina_secundaria.document.getElementById("imagen").src = "img6.jpg"
                 pagina_terciaria.document.getElementById("lletres").innerText = "HAS PERDUT";
                 alert("Espera mentres preparem la nova paraula, més sort la proxima vegada");
                 setTimeout(function(){alert("Gràcies per esperar-te 10 segons")}, 10000);
@@ -198,17 +198,5 @@ for(i=0; i<palabraD.length; i++){   //funcio per mostrar l'array de la paraula q
  }
 }
 
-//var guanyades = document.getElementById("partidesG");
-//function partidas_ganadas(){
- // if(cadena == palabraD.length){
-  //  guanyades = "Partides Guanyades: "+ contadorPartidas++;
- // }
 
-//}
-
-//function partidas_perdidas(){
- // if(a == b);
-//}
-
-pagina_cuaternaria.document.getElementById("partidesG").innerText = "Partides guanyades: " + partidasG;
 
