@@ -96,6 +96,7 @@ function mostrarcadenavacia(TamañoPalabra){
 console.log(TamañoPalabra);
 pagina_terciaria.document.getElementById("lletres").innerText = cadena; //mostrem la cadena en l'element p amb id lletres
 console.log(palabraD);
+
 }
 
 function introduirLletra(){ 
