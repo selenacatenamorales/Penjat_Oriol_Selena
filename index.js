@@ -19,10 +19,14 @@ pagina_cuaternaria = window.open(
 //pagina_cuaternaria.document.getElementById("partidesA").innerText = "Partides guanyades: 1232323";
 
 
-//var partidasG = document.cookie = "PartidasG = 0; expires=Thu, 3 Dec 2020 12:00:00 UTC,"; //creació cookie partides guanyades
+document.cookie = "PartidasG = 0; expires=Thu, 3 Dec 2020 12:00:00 UTC,"; //creació cookie partides guanyades
 document.cookie = "PartidasP = 0; expires=Thu, 3 Dec 2020 12:00:00 UTC"; //creació cookie partides perdudes
-//var partidasA = document.cookie = "PartidasA = 0; expires=Thu, 3 Dec 2020 12:00:00 UTC"; ////creació cookie partides abandonades
+document.cookie = "PartidasA = 0; expires=Thu, 3 Dec 2020 12:00:00 UTC"; ////creació cookie partides abandonades
+
 var partidasP = parseInt(getCookie("PartidasP")); //convierte el numero en formato string a entero
+var partidasG = parseInt(getCookie("PartidasG")); //convierte el numero en formato string a entero
+var partidasA = parseInt(getCookie("PartidasA")); //convierte el numero en formato string a entero
+
 
 function getCookie(cname) {//funcion cookie
   var name = cname + "=";
@@ -83,9 +87,11 @@ document.getElementById("tornar").addEventListener("click", novaparaula_temps);
 //escribim una lletra al quadre de text, fem click al botó introduir lletra i cirdem a la funció introduirLletra
 
 function novaparaula_temps(){
+  partidasA ++;
   alert("Espera mentres preparem la nova paraula");
   setTimeout(function(){ alert("Gràcies per esperar-te 5 segons"); }, 5000); //setTimeout executa l’expressió passats msec mil·lisegons.
-  novaparaula();                                                                          //L'usuari ha d'esperar-se al passar 5 segons si vol tornar a començar el joc
+  setCookie("PartidasA", partidasA, 10)                                        //L'usuari ha d'esperar-se al passar 5 segons si vol tornar a començar el joc
+  novaparaula();                                                                          
 }
 
 function novaparaula(){
