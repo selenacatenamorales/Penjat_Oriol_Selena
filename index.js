@@ -65,7 +65,7 @@ document.getElementById("tornar").addEventListener("click", novaparaula);
 
 function novaparaula(){
   alert("Espera mentres preparem la nova paraula");
-  setTimeout(function(){ alert("Gràcies per esperar-te"); }, 5000); //setTimeout executa l’expressió passats msec mil·lisegons.
+  setTimeout(function(){ alert("Gràcies per esperar-te 10 segons"); }, 10000); //setTimeout executa l’expressió passats msec mil·lisegons.
                                                                             //L'usuari ha d'esperar-se al passar 5 segons si vol tornar a començar el joc
 
   palabraD = []; //buidem l'array de la paraula per descobrir
