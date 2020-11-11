@@ -22,7 +22,7 @@ pagina_cuaternaria = window.open(
 //var partidasG = document.cookie = "PartidasG = 0; expires=Thu, 3 Dec 2020 12:00:00 UTC,"; //creació cookie partides guanyades
 document.cookie = "PartidasP = 0; expires=Thu, 3 Dec 2020 12:00:00 UTC"; //creació cookie partides perdudes
 //var partidasA = document.cookie = "PartidasA = 0; expires=Thu, 3 Dec 2020 12:00:00 UTC"; ////creació cookie partides abandonades
-console.log(getCookie("PartidasP"));
+console.log(getCookie("PartidasP"));//funcion cookie
 function getCookie(cname) {
   var name = cname + "=";
   var decodedCookie = decodeURIComponent(document.cookie);
