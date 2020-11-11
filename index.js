@@ -14,19 +14,31 @@ pagina_cuaternaria = window.open(
     "left=850px, top=300px, width=300px, height=300px, resizable=false"
 );
 
+pagina_cuaternaria.document.getElementById("partidesG").innerText = "Partides guanyades: 1232323";
+pagina_cuaternaria.document.getElementById("partidesP").innerText = "Partides guanyades: 1232323";
+pagina_cuaternaria.document.getElementById("partidesA").innerText = "Partides guanyades: 1232323";
 
-var partidasG = document.cookie = "PartidasG = 0; expires=Thu, 3 Dec 2020 12:00:00 UTC,"; //creació cookie partides guanyades
-var partidasP = document.cookie = "PartidasP = 0; expires=Thu, 3 Dec 2020 12:00:00 UTC"; //creació cookie partides perdudes
-var partidasA = document.cookie = "PartidasA = 0; expires=Thu, 3 Dec 2020 12:00:00 UTC"; ////creació cookie partides abandonades
 
+//var partidasG = document.cookie = "PartidasG = 0; expires=Thu, 3 Dec 2020 12:00:00 UTC,"; //creació cookie partides guanyades
+document.cookie = "PartidasP = 0; expires=Thu, 3 Dec 2020 12:00:00 UTC"; //creació cookie partides perdudes
+//var partidasA = document.cookie = "PartidasA = 0; expires=Thu, 3 Dec 2020 12:00:00 UTC"; ////creació cookie partides abandonades
+console.log(getCookie("PartidasP"));
+function getCookie(cname) {
+  var name = cname + "=";
+  var decodedCookie = decodeURIComponent(document.cookie);
+  var ca = decodedCookie.split(';');
+  for(var i = 0; i <ca.length; i++) {
+    var c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}
 console.log(document.cookie);
-
-
-//pagina_cuaternaria.document.getElementById("partidesG").innerText = "Partides guanyades: 1232323";
-//pagina_cuaternaria.document.getElementById("partidesP").innerText = "Partides guanyades: 1232323";
-//pagina_cuaternaria.document.getElementById("partidesA").innerText = "Partides guanyades: 1232323";
-
-
 
 var contador = 0;
 var cadena = "";
