@@ -22,7 +22,8 @@ pagina_cuaternaria.document.getElementById("partidesA").innerText = "Partides gu
 //var partidasG = document.cookie = "PartidasG = 0; expires=Thu, 3 Dec 2020 12:00:00 UTC,"; //creació cookie partides guanyades
 document.cookie = "PartidasP = 0; expires=Thu, 3 Dec 2020 12:00:00 UTC"; //creació cookie partides perdudes
 //var partidasA = document.cookie = "PartidasA = 0; expires=Thu, 3 Dec 2020 12:00:00 UTC"; ////creació cookie partides abandonades
-console.log(getCookie("PartidasP"));
+var partidasP = parseInt(getCookie("PartidasP")); //convierte el numero en formato string a entero
+console.log(partidasP + 1);
 function getCookie(cname) {
   var name = cname + "=";
   var decodedCookie = decodeURIComponent(document.cookie);
@@ -136,9 +137,6 @@ function introduirLletra(){
               break;
               case 5:
                 pagina_secundaria.document.getElementById("imagen").src = "img6.jpg"
-                //var x = parseInt(document.cookie[1]); 
-                //document.cookie[1] = x ++;
-                //console.log(document.cookie);
                 pagina_terciaria.document.getElementById("lletres").innerText = "HAS PERDUT";
                 alert("Espera mentres preparem la nova paraula, més sort la proxima vegada");
                 setTimeout(function(){alert("Gràcies per esperar-te 10 segons")}, 10000);
