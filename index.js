@@ -19,7 +19,7 @@ pagina_cuaternaria = window.open(
 //pagina_cuaternaria.document.getElementById("partidesA").innerText = "Partides guanyades: 1232323";
 
 if (document.cookie === ""){ //if para controlar si las cookies existen
-document.cookie = "PartidasG = 0; expires=Thu, 3 Dec 2020 12:00:00 UTC,"; //creació cookie partides guanyades
+document.cookie = "PartidasG = 0; expires=Thu, 3 Dec 2020 12:00:00 UTC"; //creació cookie partides guanyades
 document.cookie = "PartidasP = 0; expires=Thu, 3 Dec 2020 12:00:00 UTC"; //creació cookie partides perdudes
 document.cookie = "PartidasA = 0; expires=Thu, 3 Dec 2020 12:00:00 UTC"; ////creació cookie partides abandonades
 }
@@ -179,7 +179,7 @@ for(i=0; i<palabraD.length; i++){   //funcio per mostrar l'array de la paraula q
    cadena =  cadena + " " + palabraD[i]; 
    cadena_igual_palabra = cadena_igual_palabra + palabraD[i] ;                                       
  }
- if (cadena_igual_palabra == palabraelegida){
+ if (cadena_igual_palabra == palabraelegida){ //comaprem l'estat actual dela paraula amb la paraula escollida
   partidasG++;
   setCookie("PartidasG", partidasG, 10)
   pagina_terciaria.window.document.getElementById("lletres").innerText = "HAS GANADO";
@@ -192,18 +192,3 @@ for(i=0; i<palabraD.length; i++){   //funcio per mostrar l'array de la paraula q
  }
 }
 
-//var guanyades = document.getElementById("partidesG");
-//function partidas_ganadas(){
- // if(cadena == palabraD.length){
-  //  guanyades = "Partides Guanyades: "+ contadorPartidas++;
- // }
-
-//}
-
-//function partidas_perdidas(){
- // if(a == b);
-//}
-
-//pagina_cuaternaria.document.getElementById("partidesG").innerText = "Partides guanyades: 1232323";
-//pagina_cuaternaria.document.getElementById("partidesP").innerText = "Partides guanyades: 1232323";
-//pagina_cuaternaria.document.getElementById("partidesA").innerText = "Partides guanyades: 1232323";
