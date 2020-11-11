@@ -15,15 +15,16 @@ pagina_cuaternaria = window.open(
 );
 
 
-document.cookie = "PartidasG = 0; expires=Thu, 3 Dec 2020 12:00:00 UTC,"; //creació cookie partides guanyades
-document.cookie = "PartidasP = 0; expires=Thu, 3 Dec 2020 12:00:00 UTC"; //creació cookie partides perdudes
-document.cookie = "PartidasA = 0; expires=Thu, 3 Dec 2020 12:00:00 UTC"; ////creació cookie partides abandonades
+var partidasG = document.cookie = "PartidasG = 0; expires=Thu, 3 Dec 2020 12:00:00 UTC,"; //creació cookie partides guanyades
+var partidasP = document.cookie = "PartidasP = 0; expires=Thu, 3 Dec 2020 12:00:00 UTC"; //creació cookie partides perdudes
+var partidasA = document.cookie = "PartidasA = 0; expires=Thu, 3 Dec 2020 12:00:00 UTC"; ////creació cookie partides abandonades
 
 console.log(document.cookie);
 
-pagina_cuaternaria.document.getElementById("partidesG").innerText = "Partides guanyades: 1232323";
-pagina_cuaternaria.document.getElementById("partidesP").innerText = "Partides guanyades: 1232323";
-pagina_cuaternaria.document.getElementById("partidesA").innerText = "Partides guanyades: 1232323";
+
+//pagina_cuaternaria.document.getElementById("partidesG").innerText = "Partides guanyades: 1232323";
+//pagina_cuaternaria.document.getElementById("partidesP").innerText = "Partides guanyades: 1232323";
+//pagina_cuaternaria.document.getElementById("partidesA").innerText = "Partides guanyades: 1232323";
 
 
 
@@ -64,7 +65,7 @@ document.getElementById("tornar").addEventListener("click", novaparaula);
 
 function novaparaula(){
   alert("Espera mentres preparem la nova paraula");
-  setTimeout(function(){ alert("Gràcies per esperar-te 5 segons"); }, 5000); //setTimeout executa l’expressió passats msec mil·lisegons.
+  setTimeout(function(){ alert("Gràcies per esperar-te"); }, 5000); //setTimeout executa l’expressió passats msec mil·lisegons.
                                                                             //L'usuari ha d'esperar-se al passar 5 segons si vol tornar a començar el joc
 
   palabraD = []; //buidem l'array de la paraula per descobrir
@@ -98,7 +99,8 @@ console.log(palabraD);
 
 function introduirLletra(){ 
   lletra = document.getElementById("lletra").value; //guardem el valor del quadre de text en una variable i la pasem a 
-     lletra = lletra.toUpperCase();     //majuscules per evitar errors
+  if (lletra !== "" ){   //valida si el textbox conté una lletra
+  lletra = lletra.toUpperCase();     //majuscules per evitar errors
   console.log(lletra);
   var pos = palabraelegida.indexOf(lletra); //busquem la posició on esta situada la lletra que 
                                              //ha introduit l'usuari en la paraula per endivinar.
@@ -125,7 +127,7 @@ function introduirLletra(){
                 var contadorPartidasP = 1;
                 pagina_cuaternaria.document.getElementById("partidesP").innerText = "Partides perdudes: " + contadorPartidasP++;
                 alert("Espera mentres preparem la nova paraula, més sort la proxima vegada");
-                setTimeout(function(){ alert("Gràcies per esperar-te 10 segons"); }, 10000);
+                setTimeout(novaparaula(), 5000);
                 
                 break;
     }
@@ -137,6 +139,7 @@ function introduirLletra(){
     pos = palabraelegida.indexOf(lletra, pos + 1); //indiquem que busqui la nova posició de la lletra a partir de la anterior + 
                                                       // és a dir si la lletra estaba en la pos 2, seguirem buscant a partir de la pos 3
   }
+}
 }
   console.log(palabraD);
   mostrarcadena();
