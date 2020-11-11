@@ -18,11 +18,11 @@ pagina_cuaternaria = window.open(
 //pagina_cuaternaria.document.getElementById("partidesP").innerText = "Partides guanyades: 1232323";
 //pagina_cuaternaria.document.getElementById("partidesA").innerText = "Partides guanyades: 1232323";
 
-
+if (document.cookie === ""){
 document.cookie = "PartidasG = 0; expires=Thu, 3 Dec 2020 12:00:00 UTC,"; //creació cookie partides guanyades
 document.cookie = "PartidasP = 0; expires=Thu, 3 Dec 2020 12:00:00 UTC"; //creació cookie partides perdudes
 document.cookie = "PartidasA = 0; expires=Thu, 3 Dec 2020 12:00:00 UTC"; ////creació cookie partides abandonades
-
+}
 var partidasP = parseInt(getCookie("PartidasP")); //convierte el numero en formato string a entero
 var partidasG = parseInt(getCookie("PartidasG")); //convierte el numero en formato string a entero
 var partidasA = parseInt(getCookie("PartidasA")); //convierte el numero en formato string a entero
