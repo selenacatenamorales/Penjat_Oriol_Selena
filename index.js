@@ -68,6 +68,7 @@ function novaparaula_temps(){
   setTimeout(function(){ alert("Gràcies per esperar-te"); }, 5000); //setTimeout executa l’expressió passats msec mil·lisegons.
   novaparaula();                                                                          //L'usuari ha d'esperar-se al passar 5 segons si vol tornar a començar el joc
 }
+
 function novaparaula(){
   palabraD = []; //buidem l'array de la paraula per descobrir
   if (palabras === "" | palabras == null){
