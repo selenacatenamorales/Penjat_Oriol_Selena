@@ -198,17 +198,5 @@ for(i=0; i<palabraD.length; i++){   //funcio per mostrar l'array de la paraula q
  }
 }
 
-//var guanyades = document.getElementById("partidesG");
-//function partidas_ganadas(){
- // if(cadena == palabraD.length){
-  //  guanyades = "Partides Guanyades: "+ contadorPartidas++;
- // }
 
-//}
-
-//function partidas_perdidas(){
- // if(a == b);
-//}
-
-pagina_cuaternaria.document.getElementById("partidesG").innerText = "Partides guanyades: " + partidasG;
 
