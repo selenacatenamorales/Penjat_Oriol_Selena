@@ -58,11 +58,24 @@ function setCookie(cname, cvalue, exdays) { //actualizar valor cookie
 }
 console.log(document.cookie);
 
+var letras_aceptadas= "ABCDEFGHIJKLMNOPQRSTUVWXYZ,";
 var contador = 0;
 var cadena = "";
 var palabraD = [];
-var palabras = prompt("Indica les paraules separades per comes (',')");
+var letras_validadas = "";
+var palabras = prompt("Indica les paraules separades per comes (',')").toUpperCase().trim();
+//toUpperCase funciona para pasar el listado de palabras a mayusculas para evitar errores.
+//trim quitar espacios delante y detras del prompt,
 console.log(palabras);
+
+if(palabras!=null){  //funcion para validar el string que introduce el usuario
+for(i=0;i<palabras.length; i++){
+  if(letras_aceptadas.indexOf(palabras.charAt(i))!=-1){
+    letras_validadas = letras_validadas + palabras.charAt(i);
+  }
+}
+palabras = letras_validadas;  
+}
 
 if (palabras === "" | palabras == null) { //compara el valor y el tipo
   //si el usuario no idncia palabras escogeremos una de un Array Predefinido
@@ -73,9 +86,9 @@ if (palabras === "" | palabras == null) { //compara el valor y el tipo
   console.log(palabraelegida);
   mostrarcadenavacia(palabraelegida.length);
 } else {
-    listadoPalabras = palabras.trim().toUpperCase().split([","]); //trim quitar espacios delante y detras del prompt,
+    palabras
+    listadoPalabras = palabras.split([","]); 
     //split separa el String en un array a partir del simbolo que le pasamos
-    //toUpperCase funciona para pasar el listado de palabras a mayusculas para evitar errores.
     console.log(listadoPalabras);
 
     palabraelegida =
@@ -94,9 +107,13 @@ document.getElementById("tornar").addEventListener("click", novaparaula_temps);
 //escribim una lletra al quadre de text, fem click al botó introduir lletra i cirdem a la funció introduirLletra
 
 function novaparaula_temps(){
+  document.getElementById("introduir_lletra").style.display="none";
+  document.getElementById("tornar").style.display="none";
   partidasA ++;
   alert("Espera mentres preparem la nova paraula");
   setTimeout(function(){ alert("Gràcies per esperar-te 5 segons"); }, 5000); //setTimeout executa l’expressió passats msec mil·lisegons.
+  setTimeout(function(){document.getElementById("introduir_lletra").style.display="inline";
+  document.getElementById("tornar").style.display="inline";},5000);
   setCookie("PartidasA", partidasA, 10)                                        //L'usuari ha d'esperar-se al passar 5 segons si vol tornar a començar el joc
   pagina_cuaternaria.document.getElementById("partidesA").innerText = "Partides abandonades: " + partidasA;//contador de partides abandonades  
   novaparaula();   
@@ -157,13 +174,17 @@ function introduirLletra(){
               pagina_secundaria.document.getElementById("imagen").src = "img5.jpg"
               break;
               case 5:
+                alert("HAS PERDUT, ESPERA 10 SEGONS");
+                document.getElementById("introduir_lletra").style.display="none";
+                document.getElementById("tornar").style.display="none";
                 pagina_secundaria.document.getElementById("imagen").src = "img6.jpg"
                 partidasP++;
                 setCookie("PartidasP", partidasP, 10)
-                pagina_terciaria.document.getElementById("lletres").innerText = "HAS PERDUT";
                 setTimeout(function(){alert("GRACIES PER ESPERAR-TE 10 SEGONS")}, 10000);
-                novaparaula()
                 pagina_cuaternaria.document.getElementById("partidesP").innerText = "Partides perdudes: " + partidasP;//contador de partides perdudes
+                setTimeout(function(){document.getElementById("introduir_lletra").style.display="inline";
+                document.getElementById("tornar").style.display="inline";},10000);
+                novaparaula()
                 break;
     }
   }
@@ -187,9 +208,10 @@ for(i=0; i<palabraD.length; i++){   //funcio per mostrar l'array de la paraula q
    cadena_igual_palabra = cadena_igual_palabra + palabraD[i] ;                                       
  }
  if (cadena_igual_palabra == palabraelegida){ //comaprem l'estat actual dela paraula amb la paraula escollida
-  partidasG++;
+ pagina_terciaria.window.document.getElementById("lletres").innerText = cadena; 
+ partidasG++;
   setCookie("PartidasG", partidasG, 10)
-  pagina_terciaria.window.document.getElementById("lletres").innerText = "HAS GANADO";
+  alert("HAS GUANYAT");
   pagina_cuaternaria.document.getElementById("partidesG").innerText = "Partides guanyades: " + partidasG;//contador de partides guanyades
   novaparaula();
  
