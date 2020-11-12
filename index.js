@@ -25,6 +25,11 @@ document.cookie = "PartidasP = 0; expires=Thu, 3 Dec 2020 12:00:00 UTC"; //creac
 document.cookie = "PartidasA = 0; expires=Thu, 3 Dec 2020 12:00:00 UTC"; ////creació cookie partides abandonades
 }
 
+//muestra las estadisticas del usuario al principio de la partida
+window.onload = function(){pagina_cuaternaria.document.getElementById("partidesP").innerText = "Partides perdudes: " + partidasP;
+pagina_cuaternaria.document.getElementById("partidesA").innerText = "Partides abandonades: " + partidasA;
+pagina_cuaternaria.document.getElementById("partidesG").innerText = "Partides guanyades: " + partidasG;}
+
 var partidasP = parseInt(getCookie("PartidasP")); //convierte el numero en formato string a entero
 var partidasG = parseInt(getCookie("PartidasG")); //convierte el numero en formato string a entero
 var partidasA = parseInt(getCookie("PartidasA")); //convierte el numero en formato string a entero
@@ -153,15 +158,14 @@ function introduirLletra(){
               break;
               case 5:
                 pagina_secundaria.document.getElementById("imagen").src = "img6.jpg"
-                /*partidasP++;
+                partidasP++;
                 setCookie("PartidasP", partidasP, 10)
                 pagina_terciaria.document.getElementById("lletres").innerText = "HAS PERDUT";
-                setTimeout(function(){alert("Gràcies per esperar-te 10 segons")}, 10000);
+                setTimeout(function(){alert("GRACIES PER ESPERAR-TE 10 SEGONS")}, 10000);
+                novaparaula()
                 pagina_cuaternaria.document.getElementById("partidesP").innerText = "Partides perdudes: " + partidasP;//contador de partides perdudes
-                novaparaula(); */
                 break;
     }
-    
   }
   else{                                       
   while (pos !== -1) {  //mentres la posició de la lletra sigui -1, és a dir, que esta en la paraula per endevinar.
