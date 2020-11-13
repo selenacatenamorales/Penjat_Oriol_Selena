@@ -65,6 +65,7 @@ function setCookie(cname, cvalue, exdays) {
 console.log(document.cookie);
 
 var letras_aceptadas = "ABCDEFGHIJKLMNOPQRSTUVWXYZ,";
+var letras_introducidas= "";
 var contador = 0;
 var cadena = "";
 var palabraD = [];
@@ -137,6 +138,8 @@ function novaparaula_temps() {
 }
 
 function novaparaula() {
+  letras_introducidas = "";
+  document.getElementById("letras_introducidas").innerText = letras_introducidas;
   palabraD = []; //buidem l'array de la paraula per descobrir
   if ((palabras === "") | (palabras == null)) {
     palabraelegida =
@@ -167,10 +170,12 @@ function mostrarcadenavacia(TamañoPalabra) {
 }
 
 function introduirLletra() {
-  lletra = document.getElementById("lletra").value; //guardem el valor del quadre de text en una variable i la pasem a
+  lletra = document.getElementById("lletra").value;
+  lletra = lletra.toUpperCase(); //guardem el valor del quadre de text en una variable i la pasem a
   if (lletra !== "") {
+    letras_introducidas = letras_introducidas + " " + lletra;
+    document.getElementById("letras_introducidas").innerText = letras_introducidas;
     //valida si el textbox conté una lletra
-    lletra = lletra.toUpperCase().trim(); //majuscules per evitar errors
     console.log(lletra);
     var pos = palabraelegida.indexOf(lletra); //busquem la posició on esta situada la lletra que
     //ha introduit l'usuari en la paraula per endivinar.
@@ -192,10 +197,10 @@ function introduirLletra() {
           pagina_secundaria.document.getElementById("imagen").src = "img5.jpg";
           break;
         case 5:
+          pagina_secundaria.document.getElementById("imagen").src = "img6.jpg";
           alert("HAS PERDUT, ESPERA 10 SEGONS");
           document.getElementById("introduir_lletra").style.display = "none";
           document.getElementById("tornar").style.display = "none";
-          pagina_secundaria.document.getElementById("imagen").src = "img6.jpg";
           partidasP++;
           setCookie("PartidasP", partidasP, 10);
           setTimeout(function () {
@@ -208,6 +213,7 @@ function introduirLletra() {
               "inline";
             document.getElementById("tornar").style.display = "inline";
           }, 10000);
+
           novaparaula();
           break;
       }
