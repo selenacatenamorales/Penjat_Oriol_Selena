@@ -1,14 +1,17 @@
-pagina_secundaria = window.open( //apaertura página secundaria
+pagina_secundaria = window.open(
+  //apaertura página secundaria
   "pagina_secundaria.html",
   "dibuix",
   "left=1250px, width=300px, height=300px, resizable=false"
 );
-pagina_terciaria = window.open( //apertura página terciaria
+pagina_terciaria = window.open(
+  //apertura página terciaria
   "pagina_terciaria.html",
   "palabra",
   "left=1250px, top=500px, width=300px, height=300px, resizable=false"
 );
-pagina_cuaternaria = window.open( //apertura página cuaternária
+pagina_cuaternaria = window.open(
+  //apertura página cuaternária
   "pagina_cuaternaria.html",
   "estadisticas",
   "left=850px, top=300px, width=300px, height=300px, resizable=false"
@@ -35,7 +38,8 @@ var partidasP = parseInt(getCookie("PartidasP")); //convierte el numero en forma
 var partidasG = parseInt(getCookie("PartidasG")); //convierte el numero en formato string a entero
 var partidasA = parseInt(getCookie("PartidasA")); //convierte el numero en formato string a entero
 
-function getCookie(cname) {//funció que ens retornar el valor de la cookie en format string, li pasem el nom de la cookie
+function getCookie(cname) {
+  //funció que ens retornar el valor de la cookie en format string, li pasem el nom de la cookie
   var name = cname + "=";
   var decodedCookie = decodeURIComponent(document.cookie);
   var ca = decodedCookie.split(";");
@@ -51,7 +55,8 @@ function getCookie(cname) {//funció que ens retornar el valor de la cookie en f
   return "";
 }
 
-function setCookie(cname, cvalue, exdays) { //funció que ens actualitza el valor de la cookie, li pasem el nom de la cookie, el valor i els dies d'expiració
+function setCookie(cname, cvalue, exdays) {
+  //funció que ens actualitza el valor de la cookie, li pasem el nom de la cookie, el valor i els dies d'expiració
   var d = new Date();
   d.setTime(d.getTime() + exdays * 24 * 60 * 60 * 1000);
   var expires = "expires=" + d.toUTCString();
@@ -61,8 +66,8 @@ console.log(document.cookie);
 
 //VARIABLES GLOBALS
 var letras_aceptadas = "ABCDEFGHIJKLMNOPQRSTUVWXYZÑ,"; //string de les lletres per validar en prompt
-var letras_introducidas= ""; //string que msotrara les lletres introduides per l'usuari
-var contador = 0; //contador de vides 
+var letras_introducidas = ""; //string que msotrara les lletres introduides per l'usuari
+var contador = 0; //contador de vides
 var cadena = ""; //string que ens mostra els guions de la paraula
 var palabraD = []; //arrayamb la paraula per descobrir
 var letras_validadas = ""; //string amb les lletres valides del prompt
@@ -71,23 +76,33 @@ var palabras = prompt("Indica les paraules separades per comes (',')")
   .trim(); //trim treu els espais davant i darrere del prompt
 console.log(palabras);
 
-if (palabras != null) { //funció per validar el string que introduiex l'usuari
+if (palabras != null) {
+  //funció per validar el string que introduiex l'usuari
   for (i = 0; i < palabras.length; i++) {
-    if (letras_aceptadas.indexOf(palabras.charAt(i)) != -1) { //indexof ens retorna la posició en la que es troba la lletra, si ens retorna -1 vol dir que no apareix
+    if (letras_aceptadas.indexOf(palabras.charAt(i)) != -1) {
+      //indexof ens retorna la posició en la que es troba la lletra, si ens retorna -1 vol dir que no apareix
       letras_validadas = letras_validadas + palabras.charAt(i); //charAt ens agafa el char de la psoció i
     }
   }
   palabras = letras_validadas; //acutalitzem el valor amb el string validat
 }
 
-if ((palabras === "") | (palabras == null)) {//compara el valor i el tipus
+if ((palabras === "") | (palabras == null)) {
+  //compara el valor i el tipus
   //si l'usuari no indica cap paraula o cancela el prompt escollirem una del array predefint
-  var ListadoPreDefinido = ["CASA", "MANZANA", "COCHE", "ELECTRICIDAD", "PROGRAMADOR", "USUARIO"];
+  var ListadoPreDefinido = [
+    "CASA",
+    "MANZANA",
+    "COCHE",
+    "ELECTRICIDAD",
+    "PROGRAMADOR",
+    "USUARIO",
+  ];
   palabraelegida =
     ListadoPreDefinido[Math.floor(Math.random() * ListadoPreDefinido.length)];
   //cogemos un valor aleatorio de el array predefinido
   console.log(palabraelegida);
-  mostrarcadenavacia(palabraelegida.length); 
+  mostrarcadenavacia(palabraelegida.length);
 } else {
   palabras;
   listadoPalabras = palabras.split([","]); //split separa el String en un array a partir del simbol que li pasem
@@ -100,17 +115,15 @@ if ((palabras === "") | (palabras == null)) {//compara el valor i el tipus
   mostrarcadenavacia(palabraelegida.length);
 }
 
-
 document
   .getElementById("introduir_lletra") //serveix per introduir lletres a la paraula que s'ha d'esbrinar
-  .addEventListener("click", introduirLletra);//escribim una lletra al quadre de text, fem click al botó introduir lletra i cirdem a la funció introduirLletra
-
-
+  .addEventListener("click", introduirLletra); //escribim una lletra al quadre de text, fem click al botó introduir lletra i cirdem a la funció introduirLletra
 
 document.getElementById("tornar").addEventListener("click", novaparaula_temps);
 //al fer click al boto tornar a començar cridem a la funció novaparaula_temps
 
-function novaparaula_temps() { //funcio a la que cridem quan fem click al boto
+function novaparaula_temps() {
+  //funcio a la que cridem quan fem click al boto
   document.getElementById("introduir_lletra").style.display = "none"; //ocultem el botó introduir lletra per evitar errors
   document.getElementById("tornar").style.display = "none"; //ocultem el botó tornar a començar per evitar errors
   partidasA++; //augmentem el contador de les partides abandonades
@@ -128,11 +141,14 @@ function novaparaula_temps() { //funcio a la que cridem quan fem click al boto
   novaparaula();
 }
 
-function novaparaula() { //funció per jugar amb una altre paraula
+function novaparaula() {
+  //funció per jugar amb una altre paraula
   letras_introducidas = ""; //buidem el string de les lletres introduides per l'usuari
-  document.getElementById("letras_introducidas").innerText = letras_introducidas; //mostra per pantalla les lletres introduides
+  document.getElementById(
+    "letras_introducidas"
+  ).innerText = letras_introducidas; //mostra per pantalla les lletres introduides
   palabraD = []; //buidem l'array de la paraula per descobrir
-  if ((palabras === "") | (palabras == null)) { 
+  if ((palabras === "") | (palabras == null)) {
     palabraelegida =
       ListadoPreDefinido[Math.floor(Math.random() * ListadoPreDefinido.length)];
     console.log(palabraelegida);
@@ -146,7 +162,8 @@ function novaparaula() { //funció per jugar amb una altre paraula
   mostrarcadenavacia(palabraelegida.length);
 }
 
-function mostrarcadenavacia(TamañoPalabra) { //funció que mostra la longitud de la parula amb guions baixos
+function mostrarcadenavacia(TamañoPalabra) {
+  //funció que mostra la longitud de la parula amb guions baixos
   cadena = ""; //buidem la cadena
   palabraD = []; //buidem l'array de la paraula per descobrir
   for (i = 0; i < TamañoPalabra; i++) {
@@ -160,12 +177,16 @@ function mostrarcadenavacia(TamañoPalabra) { //funció que mostra la longitud d
   console.log(palabraD);
 }
 
-function introduirLletra() { //funció per introdui la lletra en la paraula per descobrir
+function introduirLletra() {
+  //funció per introdui la lletra en la paraula per descobrir
   lletra = document.getElementById("lletra").value; //guardem el valorde la lletra introduida per l'usuari
   lletra = lletra.toUpperCase(); //guardem el valor del quadre de text en una variable i la pasem a majuscules
-  if (lletra !== "") { //comparem si la lletra és diferent a un string buit
+  if (lletra !== "") {
+    //comparem si la lletra és diferent a un string buit
     letras_introducidas = letras_introducidas + " " + lletra; //guardem la lletra en un string i un espai
-    document.getElementById("letras_introducidas").innerText = letras_introducidas;
+    document.getElementById(
+      "letras_introducidas"
+    ).innerText = letras_introducidas;
     //mostra per pantalla el string letras_introducidas
     console.log(lletra);
     var pos = palabraelegida.indexOf(lletra); //busquem la posició on esta situada la lletra que
@@ -208,7 +229,8 @@ function introduirLletra() { //funció per introdui la lletra en la paraula per 
           break;
       }
     } else {
-      while (pos !== -1) { //serveix per si hi ha més d'una lletra que ha indicat l'usuari en la paraula per endevinar
+      while (pos !== -1) {
+        //serveix per si hi ha més d'una lletra que ha indicat l'usuari en la paraula per endevinar
         //mentres la posició de la lletra sigui -1, és a dir, que esta en la paraula per endevinar.
         palabraD[pos] = lletra; //subsituirem en l'array el guio per la lletra corresponent
         pos = palabraelegida.indexOf(lletra, pos + 1); //indiquem que busqui la nova posició de la lletra a partir de la anterior + 1
@@ -220,16 +242,17 @@ function introduirLletra() { //funció per introdui la lletra en la paraula per 
   mostrarcadena();
 }
 
-function mostrarcadena() { //serveix per saber si l'usuari ja ha 
-//encertat la paraula o per mostrar l'estat actual de la paraula per endivinar
+function mostrarcadena() {
+  //serveix per saber si l'usuari ja ha
+  //encertat la paraula o per mostrar l'estat actual de la paraula per endivinar
   cadena = ""; //buidem la cadena per a sobrescriure-la
-  cadena_igual_palabra = ""; //buidem la cadena per a sobrescriure-la, 
+  cadena_igual_palabra = ""; //buidem la cadena per a sobrescriure-la,
   for (i = 0; i < palabraD.length; i++) {
     //funcio per mostrar l'array de la paraula que estem descobrint.
     cadena = cadena + " " + palabraD[i];
     cadena_igual_palabra = cadena_igual_palabra + palabraD[i];
   }
-  if (cadena_igual_palabra == palabraelegida) { 
+  if (cadena_igual_palabra == palabraelegida) {
     //comaprem l'estat actual dela paraula amb la paraula escollida
     pagina_terciaria.window.document.getElementById(
       "lletres"
