@@ -3,19 +3,21 @@
         <LINK REL=StyleSheet HREF="style.css">
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
         <title>Joc del penjat</title>
 
     </head>
     <body>
-        <h1>JOC DEL PENJAT</h1>
+        <div class="div1">
+        
+            <h1>JOC DEL PENJAT</h1>
+            <input type="text" id="lletra" maxlength="1" onclick="if(this.id == 'lletra') this.value=''">
+            <button id="introduir_lletra">Introduïr lletra</button>
+            <button id="tornar">Tornar a començar</button>
+            <p>LETRAS INTRODUCIDAS:</p>
+            <p id="letras_introducidas" ></p>
 
-        <input type="text" id="lletra" maxlength="1" onclick="if(this.id == 'lletra') this.value=''">
-        <button id="introduir_lletra">Introduïr lletra</button>
-        <button id="tornar">Tornar a començar</button>
-        <p>LETRAS INTRODUCIDAS:</p>
-        <br>
-        <p id="letras_introducidas" ></p>
-
+        </div>
     <script src="index.js">
     </script>
     </body>

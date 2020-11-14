@@ -1,17 +1,17 @@
 pagina_secundaria = window.open(
   "pagina_secundaria.html",
   "dibuix",
-  "left=1250px, width=300px, height=300px, resizable=false"
+  "top=200px, left=725px, width=375px, height=400px, resizable=false"
 );
 pagina_terciaria = window.open(
   "pagina_terciaria.html",
   "palabra",
-  "left=1250px, top=500px, width=300px, height=300px, resizable=false"
+  "left=1250px, top=500px, width=400px, height=325px, resizable=false"
 );
 pagina_cuaternaria = window.open(
   "pagina_cuaternaria.html",
   "estadisticas",
-  "left=850px, top=300px, width=300px, height=300px, resizable=false"
+  "left=1250px, width=400px, height=325px, resizable=false"
 );
 
 //pagina_cuaternaria.document.getElementById("partidesG").innerText = "Partides guanyades: 1232323";

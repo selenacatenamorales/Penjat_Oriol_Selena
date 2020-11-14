@@ -1,14 +1,42 @@
-*{
-    background-color:black;
-    color: white;
-    font-family: arial;   
+body{
+    background-color:white;
+    font-family: sans-serif; 
+    background-image: url(fondo.jpg);  
 }
-
 h1{
+    
+    margin: 50px;
+}
+.div1{
+    
+    
+    color: white;
+    width: 550px;
+    margin: 100px;
+    height: 270px;
     text-align: center;
+    border-style: double;
+    border-radius: 20px;
+    border-color: white;
+    border-width: 10px;
+    
+
+}
+div{
+    text-align: center;
+    color: white;
+}
+p{
+    
+    margin: 20px;
 }
 
 button{
     display: inline;
+    color: black;
+    height: 35px;
 }
-
+#lletra{
+    height: 35px;
+    font-size: 15px;
+}
