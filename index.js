@@ -74,6 +74,9 @@ var letras_validadas = ""; //string amb les lletres valides del prompt
 var palabras = prompt("Indica les paraules separades per comes (',')")
   .toUpperCase() //toUpperCase funciona per passar totes les lletre a majuscules
   .trim(); //trim treu els espais davant i darrere del prompt
+var audioacertadas = document.getElementById("audioacertadas"); //guardem el audio que sonara al acertar una lletra
+var audiofallades = document.getElementById("audioafalladas"); //guardem el audio que sonara al fallar una lletra
+
 console.log(palabras);
 
 if (palabras != null) {
@@ -192,6 +195,7 @@ function introduirLletra() {
     var pos = palabraelegida.indexOf(lletra); //busquem la posició on esta situada la lletra que
     //ha introduit l'usuari en la paraula per endivinar.
     if (pos == -1) {
+      audiofalladas.play(); //sona el audio per les paraules acertades
       contador++;
       switch (
         contador //serveix per controlar el src de la imatge
@@ -229,6 +233,7 @@ function introduirLletra() {
           break;
       }
     } else {
+      audioacertadas.play(); //sona el audio per les paraules acertades
       while (pos !== -1) {
         //serveix per si hi ha més d'una lletra que ha indicat l'usuari en la paraula per endevinar
         //mentres la posició de la lletra sigui -1, és a dir, que esta en la paraula per endevinar.

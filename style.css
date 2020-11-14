@@ -12,3 +12,10 @@ button{
     display: inline;
 }
 
+#audioacertadas{
+    display: none
+    }
+
+#audiofalladas{
+    display: none
+    }

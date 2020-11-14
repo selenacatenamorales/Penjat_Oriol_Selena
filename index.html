@@ -12,6 +12,12 @@
         <input type="text" id="lletra" maxlength="1" onclick="if(this.id == 'lletra') this.value=''">
         <button id="introduir_lletra">Introduïr lletra</button>
         <button id="tornar">Tornar a començar</button>
+        <audio id="audioacertadas" controls>
+            <source type="audio/wav" src="ganador.mp3">
+            </audio>
+        <audio id="audiofalladas" controls>
+            <source type="audio/wav" src="error.mp3">
+        </audio>
         <p>LETRAS INTRODUCIDAS:</p>
         <br>
         <p id="letras_introducidas" ></p>
