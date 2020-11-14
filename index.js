@@ -23,6 +23,9 @@ if (document.cookie === "") {
   document.cookie = "PartidasP = 0; expires=Thu, 3 Dec 2020 12:00:00 UTC"; //creació cookie partides perdudes
   document.cookie = "PartidasA = 0; expires=Thu, 3 Dec 2020 12:00:00 UTC"; ////creació cookie partides abandonades
 }
+var partidas_perdidas = 0; //contador de les estadistiques de la partida
+var partidas_ganadas = 0;
+var partidas_abandonadas = 0;
 
 //funció emagatzemada en window.onload que ens mostra les estadistiques gloabals
 window.onload = function () {
@@ -32,11 +35,19 @@ window.onload = function () {
     "Partides abandonades: " + partidasA;
   pagina_cuaternaria.document.getElementById("partidesG").innerText =
     "Partides guanyades: " + partidasG;
+  pagina_cuaternaria.document.getElementById("partidesPerdudes").innerText =
+    "Partides perdudes: " + partidas_perdidas;
+  pagina_cuaternaria.document.getElementById("partidesAbandonades").innerText =
+    "Partides abandonades: " + partidas_abandonadas;
+  pagina_cuaternaria.document.getElementById("partidesGuanyades").innerText =
+    "Partides guanyades: " + partidas_ganadas;
 };
 
 var partidasP = parseInt(getCookie("PartidasP")); //convierte el numero en formato string a entero
 var partidasG = parseInt(getCookie("PartidasG")); //convierte el numero en formato string a entero
 var partidasA = parseInt(getCookie("PartidasA")); //convierte el numero en formato string a entero
+
+
 
 function getCookie(cname) {
   //funció que ens retornar el valor de la cookie en format string, li pasem el nom de la cookie
@@ -130,6 +141,7 @@ function novaparaula_temps() {
   document.getElementById("introduir_lletra").style.display = "none"; //ocultem el botó introduir lletra per evitar errors
   document.getElementById("tornar").style.display = "none"; //ocultem el botó tornar a començar per evitar errors
   partidasA++; //augmentem el contador de les partides abandonades
+  partidas_abandonadas++;
   alert("Espera mentres preparem la nova paraula");
   setTimeout(function () {
     alert("Gràcies per esperar-te 5 segons");
@@ -141,11 +153,15 @@ function novaparaula_temps() {
   setCookie("PartidasA", partidasA, 10); //acutalizem el valor de la cookie PartidasA
   pagina_cuaternaria.document.getElementById("partidesA").innerText =
     "Partides abandonades: " + partidasA; //mostra el valor de les partides abandonades per pantalla
+  pagina_cuaternaria.document.getElementById("partidesAbandonades").innerText =
+  "Partides abandonades: " + partidas_abandonadas;
   novaparaula();
 }
 
 function novaparaula() {
   //funció per jugar amb una altre paraula
+  contador = 0; //reiniciem el contador de vides
+  pagina_secundaria.document.getElementById("imagen").src = "img1.jpg"; //reiniciem la imatge del penjat a la primera
   letras_introducidas = ""; //buidem el string de les lletres introduides per l'usuari
   document.getElementById(
     "letras_introducidas"
@@ -160,8 +176,7 @@ function novaparaula() {
       listadoPalabras[Math.floor(Math.random() * listadoPalabras.length)];
     console.log(palabraelegida);
   }
-  pagina_secundaria.document.getElementById("imagen").src = "img1.jpg"; //reiniciem la imatge del penjat a la primera
-  contador = 0; //reiniciem el contador de vides
+  
   mostrarcadenavacia(palabraelegida.length);
 }
 
@@ -218,12 +233,15 @@ function introduirLletra() {
           document.getElementById("introduir_lletra").style.display = "none"; //ocultem el display del botó introduir lletres per evitar errors
           document.getElementById("tornar").style.display = "none"; //ocultem el display del botó torna a començar per evitar errors
           partidasP++; //augmentem el contador de partides perdudes
+          partidas_perdidas ++;
           setCookie("PartidasP", partidasP, 10); //acutalitzem el valor de la cookie PartidasP
           setTimeout(function () {
             alert("GRACIES PER ESPERAR-TE 10 SEGONS");
           }, 10000); //setTimout que ens mostra un alert passat els 10000 milisegons
           pagina_cuaternaria.document.getElementById("partidesP").innerText =
             "Partides perdudes: " + partidasP; //mostra les partides perdudes
+          pagina_cuaternaria.document.getElementById("partidesPerdudes").innerText =
+          "Partides perdudes: " + partidas_perdidas; 
           setTimeout(function () {
             document.getElementById("introduir_lletra").style.display =
               "inline";
@@ -263,10 +281,13 @@ function mostrarcadena() {
       "lletres"
     ).innerText = cadena; //mostrem la cadena per pantalla
     partidasG++; //augmentem el valor de partidasG
+    partidas_ganadas++;
     setCookie("PartidasG", partidasG, 10); //actualitzem el valor de la cookie PartidasG
     alert("HAS GUANYAT");
     pagina_cuaternaria.document.getElementById("partidesG").innerText =
       "Partides guanyades: " + partidasG; //mostra per pantalla les partides guanyades
+    pagina_cuaternaria.document.getElementById("partidesGuanyades").innerText =
+      "Partides guanyades: " + partidas_ganadas;
     novaparaula();
   } else {
     console.log(cadena_igual_palabra);
