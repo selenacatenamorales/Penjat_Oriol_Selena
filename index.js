@@ -1,31 +1,33 @@
 pagina_secundaria = window.open(
+  //apaertura página secundaria
   "pagina_secundaria.html",
   "dibuix",
   "top=200px, left=725px, width=375px, height=400px, resizable=false"
 );
 pagina_terciaria = window.open(
+  //apertura página terciaria
   "pagina_terciaria.html",
   "palabra",
   "left=1250px, top=500px, width=400px, height=325px, resizable=false"
 );
 pagina_cuaternaria = window.open(
+  //apertura página cuaternária
   "pagina_cuaternaria.html",
   "estadisticas",
   "left=1250px, width=400px, height=325px, resizable=false"
 );
 
-//pagina_cuaternaria.document.getElementById("partidesG").innerText = "Partides guanyades: 1232323";
-//pagina_cuaternaria.document.getElementById("partidesP").innerText = "Partides guanyades: 1232323";
-//pagina_cuaternaria.document.getElementById("partidesA").innerText = "Partides guanyades: 1232323";
-
 if (document.cookie === "") {
-  //if para controlar si las cookies existen
+  //if percontrolar si les cookies estan creades
   document.cookie = "PartidasG = 0; expires=Thu, 3 Dec 2020 12:00:00 UTC"; //creació cookie partides guanyades
   document.cookie = "PartidasP = 0; expires=Thu, 3 Dec 2020 12:00:00 UTC"; //creació cookie partides perdudes
   document.cookie = "PartidasA = 0; expires=Thu, 3 Dec 2020 12:00:00 UTC"; ////creació cookie partides abandonades
 }
+var partidas_perdidas = 0; //contador de les estadistiques de la partida
+var partidas_ganadas = 0;
+var partidas_abandonadas = 0;
 
-//muestra las estadisticas del usuario al principio de la partida
+//funció emagatzemada en window.onload que ens mostra les estadistiques gloabals
 window.onload = function () {
   pagina_cuaternaria.document.getElementById("partidesP").innerText =
     "Partides perdudes: " + partidasP;
@@ -33,14 +35,22 @@ window.onload = function () {
     "Partides abandonades: " + partidasA;
   pagina_cuaternaria.document.getElementById("partidesG").innerText =
     "Partides guanyades: " + partidasG;
+  pagina_cuaternaria.document.getElementById("partidesPerdudes").innerText =
+    "Partides perdudes: " + partidas_perdidas;
+  pagina_cuaternaria.document.getElementById("partidesAbandonades").innerText =
+    "Partides abandonades: " + partidas_abandonadas;
+  pagina_cuaternaria.document.getElementById("partidesGuanyades").innerText =
+    "Partides guanyades: " + partidas_ganadas;
 };
 
 var partidasP = parseInt(getCookie("PartidasP")); //convierte el numero en formato string a entero
 var partidasG = parseInt(getCookie("PartidasG")); //convierte el numero en formato string a entero
 var partidasA = parseInt(getCookie("PartidasA")); //convierte el numero en formato string a entero
 
+
+
 function getCookie(cname) {
-  //funcion cookie
+  //funció que ens retornar el valor de la cookie en format string, li pasem el nom de la cookie
   var name = cname + "=";
   var decodedCookie = decodeURIComponent(document.cookie);
   var ca = decodedCookie.split(";");
@@ -55,8 +65,9 @@ function getCookie(cname) {
   }
   return "";
 }
+
 function setCookie(cname, cvalue, exdays) {
-  //actualizar valor cookie
+  //funció que ens actualitza el valor de la cookie, li pasem el nom de la cookie, el valor i els dies d'expiració
   var d = new Date();
   d.setTime(d.getTime() + exdays * 24 * 60 * 60 * 1000);
   var expires = "expires=" + d.toUTCString();
@@ -64,33 +75,43 @@ function setCookie(cname, cvalue, exdays) {
 }
 console.log(document.cookie);
 
-var letras_aceptadas = "ABCDEFGHIJKLMNOPQRSTUVWXYZ,";
-var letras_introducidas= "";
-var contador = 0;
-var cadena = "";
-var palabraD = [];
-var letras_validadas = "";
+//VARIABLES GLOBALS
+var letras_aceptadas = "ABCDEFGHIJKLMNOPQRSTUVWXYZÑ,"; //string de les lletres per validar en prompt
+var letras_introducidas = ""; //string que msotrara les lletres introduides per l'usuari
+var contador = 0; //contador de vides
+var cadena = ""; //string que ens mostra els guions de la paraula
+var palabraD = []; //arrayamb la paraula per descobrir
+var letras_validadas = ""; //string amb les lletres valides del prompt
 var palabras = prompt("Indica les paraules separades per comes (',')")
-  .toUpperCase()
-  .trim();
-//toUpperCase funciona para pasar el listado de palabras a mayusculas para evitar errores.
-//trim quitar espacios delante y detras del prompt,
+  .toUpperCase() //toUpperCase funciona per passar totes les lletre a majuscules
+  .trim(); //trim treu els espais davant i darrere del prompt
+var audioacertadas = document.getElementById("audioacertadas"); //guardem el audio que sonara al acertar una lletra
+var audiofallades = document.getElementById("audioafalladas"); //guardem el audio que sonara al fallar una lletra
+
 console.log(palabras);
 
 if (palabras != null) {
-  //funcion para validar el string que introduce el usuario
+  //funció per validar el string que introduiex l'usuari
   for (i = 0; i < palabras.length; i++) {
     if (letras_aceptadas.indexOf(palabras.charAt(i)) != -1) {
-      letras_validadas = letras_validadas + palabras.charAt(i);
+      //indexof ens retorna la posició en la que es troba la lletra, si ens retorna -1 vol dir que no apareix
+      letras_validadas = letras_validadas + palabras.charAt(i); //charAt ens agafa el char de la psoció i
     }
   }
-  palabras = letras_validadas;
+  palabras = letras_validadas; //acutalitzem el valor amb el string validat
 }
 
 if ((palabras === "") | (palabras == null)) {
-  //compara el valor y el tipo
-  //si el usuario no idncia palabras escogeremos una de un Array Predefinido
-  var ListadoPreDefinido = ["CASA", "MANZANA", "COCHE"];
+  //compara el valor i el tipus
+  //si l'usuari no indica cap paraula o cancela el prompt escollirem una del array predefint
+  var ListadoPreDefinido = [
+    "CASA",
+    "MANZANA",
+    "COCHE",
+    "ELECTRICIDAD",
+    "PROGRAMADOR",
+    "USUARIO",
+  ];
   palabraelegida =
     ListadoPreDefinido[Math.floor(Math.random() * ListadoPreDefinido.length)];
   //cogemos un valor aleatorio de el array predefinido
@@ -98,8 +119,7 @@ if ((palabras === "") | (palabras == null)) {
   mostrarcadenavacia(palabraelegida.length);
 } else {
   palabras;
-  listadoPalabras = palabras.split([","]);
-  //split separa el String en un array a partir del simbolo que le pasamos
+  listadoPalabras = palabras.split([","]); //split separa el String en un array a partir del simbol que li pasem
   console.log(listadoPalabras);
 
   palabraelegida =
@@ -109,37 +129,43 @@ if ((palabras === "") | (palabras == null)) {
   mostrarcadenavacia(palabraelegida.length);
 }
 
-//serveix per introduir lletres a la paraula que s'ha d'esbrinar
 document
-  .getElementById("introduir_lletra")
-  .addEventListener("click", introduirLletra);
-//escribim una lletra al quadre de text, fem click al botó introduir lletra i cirdem a la funció introduirLletra
+  .getElementById("introduir_lletra") //serveix per introduir lletres a la paraula que s'ha d'esbrinar
+  .addEventListener("click", introduirLletra); //escribim una lletra al quadre de text, fem click al botó introduir lletra i cirdem a la funció introduirLletra
 
-//serveix per introduir lletres a la paraula que s'ha d'esbrinar
 document.getElementById("tornar").addEventListener("click", novaparaula_temps);
-//escribim una lletra al quadre de text, fem click al botó introduir lletra i cirdem a la funció introduirLletra
+//al fer click al boto tornar a començar cridem a la funció novaparaula_temps
 
 function novaparaula_temps() {
-  document.getElementById("introduir_lletra").style.display = "none";
-  document.getElementById("tornar").style.display = "none";
-  partidasA++;
+  //funcio a la que cridem quan fem click al boto
+  document.getElementById("introduir_lletra").style.display = "none"; //ocultem el botó introduir lletra per evitar errors
+  document.getElementById("tornar").style.display = "none"; //ocultem el botó tornar a començar per evitar errors
+  partidasA++; //augmentem el contador de les partides abandonades
+  partidas_abandonadas++;
   alert("Espera mentres preparem la nova paraula");
   setTimeout(function () {
     alert("Gràcies per esperar-te 5 segons");
-  }, 5000); //setTimeout executa l’expressió passats msec mil·lisegons.
+  }, 5000); //setTimeout executa l’expressió passats 5000 mil·lisegons.
   setTimeout(function () {
-    document.getElementById("introduir_lletra").style.display = "inline";
-    document.getElementById("tornar").style.display = "inline";
+    document.getElementById("introduir_lletra").style.display = "inline"; //tornem a mostrar el botó de introduir_lletra
+    document.getElementById("tornar").style.display = "inline"; //torne a mostrar el botó de tornar
   }, 5000);
-  setCookie("PartidasA", partidasA, 10); //L'usuari ha d'esperar-se al passar 5 segons si vol tornar a començar el joc
+  setCookie("PartidasA", partidasA, 10); //acutalizem el valor de la cookie PartidasA
   pagina_cuaternaria.document.getElementById("partidesA").innerText =
-    "Partides abandonades: " + partidasA; //contador de partides abandonades
+    "Partides abandonades: " + partidasA; //mostra el valor de les partides abandonades per pantalla
+  pagina_cuaternaria.document.getElementById("partidesAbandonades").innerText =
+  "Partides abandonades: " + partidas_abandonadas;
   novaparaula();
 }
 
 function novaparaula() {
-  letras_introducidas = "";
-  document.getElementById("letras_introducidas").innerText = letras_introducidas;
+  //funció per jugar amb una altre paraula
+  contador = 0; //reiniciem el contador de vides
+  pagina_secundaria.document.getElementById("imagen").src = "img1.jpg"; //reiniciem la imatge del penjat a la primera
+  letras_introducidas = ""; //buidem el string de les lletres introduides per l'usuari
+  document.getElementById(
+    "letras_introducidas"
+  ).innerText = letras_introducidas; //mostra per pantalla les lletres introduides
   palabraD = []; //buidem l'array de la paraula per descobrir
   if ((palabras === "") | (palabras == null)) {
     palabraelegida =
@@ -150,14 +176,14 @@ function novaparaula() {
       listadoPalabras[Math.floor(Math.random() * listadoPalabras.length)];
     console.log(palabraelegida);
   }
-  pagina_secundaria.document.getElementById("imagen").src = "img1.jpg";
-  contador = 0;
+  
   mostrarcadenavacia(palabraelegida.length);
 }
 
 function mostrarcadenavacia(TamañoPalabra) {
-  cadena = "";
-  palabraD = [];
+  //funció que mostra la longitud de la parula amb guions baixos
+  cadena = ""; //buidem la cadena
+  palabraD = []; //buidem l'array de la paraula per descobrir
   for (i = 0; i < TamañoPalabra; i++) {
     //omplim l'array inicialment amb guions baixos (_)
     palabraD[i] = "_";
@@ -170,19 +196,24 @@ function mostrarcadenavacia(TamañoPalabra) {
 }
 
 function introduirLletra() {
-  lletra = document.getElementById("lletra").value;
-  lletra = lletra.toUpperCase(); //guardem el valor del quadre de text en una variable i la pasem a
+  //funció per introdui la lletra en la paraula per descobrir
+  lletra = document.getElementById("lletra").value; //guardem el valorde la lletra introduida per l'usuari
+  lletra = lletra.toUpperCase(); //guardem el valor del quadre de text en una variable i la pasem a majuscules
   if (lletra !== "") {
-    letras_introducidas = letras_introducidas + " " + lletra;
-    document.getElementById("letras_introducidas").innerText = letras_introducidas;
-    //valida si el textbox conté una lletra
+    //comparem si la lletra és diferent a un string buit
+    letras_introducidas = letras_introducidas + " " + lletra; //guardem la lletra en un string i un espai
+    document.getElementById(
+      "letras_introducidas"
+    ).innerText = letras_introducidas;
+    //mostra per pantalla el string letras_introducidas
     console.log(lletra);
     var pos = palabraelegida.indexOf(lletra); //busquem la posició on esta situada la lletra que
     //ha introduit l'usuari en la paraula per endivinar.
     if (pos == -1) {
+      audiofalladas.play(); //sona el audio per les paraules acertades
       contador++;
       switch (
-        contador //sirve para cambiar el src de la imagen al fallar, se controla gracias al contador
+        contador //serveix per controlar el src de la imatge
       ) {
         case 1:
           pagina_secundaria.document.getElementById("imagen").src = "img2.jpg";
@@ -199,21 +230,23 @@ function introduirLletra() {
         case 5:
           pagina_secundaria.document.getElementById("imagen").src = "img6.jpg";
           alert("HAS PERDUT, ESPERA 10 SEGONS");
-          document.getElementById("introduir_lletra").style.display = "none";
-          document.getElementById("tornar").style.display = "none";
-          partidasP++;
-          setCookie("PartidasP", partidasP, 10);
+          document.getElementById("introduir_lletra").style.display = "none"; //ocultem el display del botó introduir lletres per evitar errors
+          document.getElementById("tornar").style.display = "none"; //ocultem el display del botó torna a començar per evitar errors
+          partidasP++; //augmentem el contador de partides perdudes
+          partidas_perdidas ++;
+          setCookie("PartidasP", partidasP, 10); //acutalitzem el valor de la cookie PartidasP
           setTimeout(function () {
             alert("GRACIES PER ESPERAR-TE 10 SEGONS");
-          }, 10000);
+          }, 10000); //setTimout que ens mostra un alert passat els 10000 milisegons
           pagina_cuaternaria.document.getElementById("partidesP").innerText =
-            "Partides perdudes: " + partidasP; //contador de partides perdudes
+            "Partides perdudes: " + partidasP; //mostra les partides perdudes
+          pagina_cuaternaria.document.getElementById("partidesPerdudes").innerText =
+          "Partides perdudes: " + partidas_perdidas; 
           setTimeout(function () {
             document.getElementById("introduir_lletra").style.display =
               "inline";
             document.getElementById("tornar").style.display = "inline";
-          }, 10000);
-
+          }, 10000); //setTimout que passat els 10 segons ens torna a mostrar el display dels dos botons
           novaparaula();
           break;
           case 3:
@@ -234,10 +267,12 @@ function introduirLletra() {
                 break;
       }
     } else {
+      audioacertadas.play(); //sona el audio per les paraules acertades
       while (pos !== -1) {
+        //serveix per si hi ha més d'una lletra que ha indicat l'usuari en la paraula per endevinar
         //mentres la posició de la lletra sigui -1, és a dir, que esta en la paraula per endevinar.
         palabraD[pos] = lletra; //subsituirem en l'array el guio per la lletra corresponent
-        pos = palabraelegida.indexOf(lletra, pos + 1); //indiquem que busqui la nova posició de la lletra a partir de la anterior +
+        pos = palabraelegida.indexOf(lletra, pos + 1); //indiquem que busqui la nova posició de la lletra a partir de la anterior + 1
         // és a dir si la lletra estaba en la pos 2, seguirem buscant a partir de la pos 3
       }
 
@@ -248,8 +283,10 @@ function introduirLletra() {
 }
 
 function mostrarcadena() {
+  //serveix per saber si l'usuari ja ha
+  //encertat la paraula o per mostrar l'estat actual de la paraula per endivinar
   cadena = ""; //buidem la cadena per a sobrescriure-la
-  cadena_igual_palabra = ""; //buidem la cadena per a sobrescriure-la
+  cadena_igual_palabra = ""; //buidem la cadena per a sobrescriure-la,
   for (i = 0; i < palabraD.length; i++) {
     //funcio per mostrar l'array de la paraula que estem descobrint.
     cadena = cadena + " " + palabraD[i];
@@ -259,18 +296,21 @@ function mostrarcadena() {
     //comaprem l'estat actual dela paraula amb la paraula escollida
     pagina_terciaria.window.document.getElementById(
       "lletres"
-    ).innerText = cadena;
-    partidasG++;
-    setCookie("PartidasG", partidasG, 10);
+    ).innerText = cadena; //mostrem la cadena per pantalla
+    partidasG++; //augmentem el valor de partidasG
+    partidas_ganadas++;
+    setCookie("PartidasG", partidasG, 10); //actualitzem el valor de la cookie PartidasG
     alert("HAS GUANYAT");
     pagina_cuaternaria.document.getElementById("partidesG").innerText =
-      "Partides guanyades: " + partidasG; //contador de partides guanyades
+      "Partides guanyades: " + partidasG; //mostra per pantalla les partides guanyades
+    pagina_cuaternaria.document.getElementById("partidesGuanyades").innerText =
+      "Partides guanyades: " + partidas_ganadas;
     novaparaula();
   } else {
     console.log(cadena_igual_palabra);
     console.log(cadena);
     pagina_terciaria.window.document.getElementById(
       "lletres"
-    ).innerText = cadena;
+    ).innerText = cadena; //mostra l'String cadena per pantalla
   }
 }
