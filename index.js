@@ -229,6 +229,7 @@ function introduirLletra() {
           break;
         case 5:
           pagina_secundaria.document.getElementById("imagen").src = "img6.jpg";
+          pagina_terciaria.document.getElementById("lletres").innerText = "HAS PERDUT";
           alert("HAS PERDUT, ESPERA 10 SEGONS");
           document.getElementById("introduir_lletra").style.display = "none"; //ocultem el display del botó introduir lletres per evitar errors
           document.getElementById("tornar").style.display = "none"; //ocultem el display del botó torna a començar per evitar errors
@@ -249,22 +250,6 @@ function introduirLletra() {
           }, 10000); //setTimout que passat els 10 segons ens torna a mostrar el display dels dos botons
           novaparaula();
           break;
-          case 3:
-            pagina_secundaria.document.getElementById("imagen").src = "img4.jpg"
-            break;
-            case 4:
-              pagina_secundaria.document.getElementById("imagen").src = "img5.jpg"
-              break;
-              case 5:
-                pagina_secundaria.document.getElementById("imagen").src = "img6.jpg"
-                partidasP++;
-                setCookie("PartidasP", partidasP, 10)
-                pagina_terciaria.document.getElementById("lletres").innerText = "HAS PERDUT";
-                alert("Espera mentres preparem la nova paraula, més sort la proxima vegada");
-                setTimeout(function(){alert("Gràcies per esperar-te 10 segons")}, 10000);
-                pagina_cuaternaria.document.getElementById("partidesP").innerText = "Partides perdudes: " + partidasP;//contador de partides perdudes
-                novaparaula();
-                break;
       }
     } else {
       audioacertadas.play(); //sona el audio per les paraules acertades
