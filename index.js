@@ -47,8 +47,6 @@ var partidasP = parseInt(getCookie("PartidasP")); //convierte el numero en forma
 var partidasG = parseInt(getCookie("PartidasG")); //convierte el numero en formato string a entero
 var partidasA = parseInt(getCookie("PartidasA")); //convierte el numero en formato string a entero
 
-
-
 function getCookie(cname) {
   //funció que ens retornar el valor de la cookie en format string, li pasem el nom de la cookie
   var name = cname + "=";
@@ -154,7 +152,7 @@ function novaparaula_temps() {
   pagina_cuaternaria.document.getElementById("partidesA").innerText =
     "Partides abandonades: " + partidasA; //mostra el valor de les partides abandonades per pantalla
   pagina_cuaternaria.document.getElementById("partidesAbandonades").innerText =
-  "Partides abandonades: " + partidas_abandonadas;
+    "Partides abandonades: " + partidas_abandonadas;
   novaparaula();
 }
 
@@ -176,7 +174,7 @@ function novaparaula() {
       listadoPalabras[Math.floor(Math.random() * listadoPalabras.length)];
     console.log(palabraelegida);
   }
-  
+
   mostrarcadenavacia(palabraelegida.length);
 }
 
@@ -229,20 +227,22 @@ function introduirLletra() {
           break;
         case 5:
           pagina_secundaria.document.getElementById("imagen").src = "img6.jpg";
-          pagina_terciaria.document.getElementById("lletres").innerText = "HAS PERDUT";
+          pagina_terciaria.document.getElementById("lletres").innerText =
+            "HAS PERDUT";
           alert("HAS PERDUT, ESPERA 10 SEGONS");
           document.getElementById("introduir_lletra").style.display = "none"; //ocultem el display del botó introduir lletres per evitar errors
           document.getElementById("tornar").style.display = "none"; //ocultem el display del botó torna a començar per evitar errors
           partidasP++; //augmentem el contador de partides perdudes
-          partidas_perdidas ++;
+          partidas_perdidas++;
           setCookie("PartidasP", partidasP, 10); //acutalitzem el valor de la cookie PartidasP
           setTimeout(function () {
             alert("GRACIES PER ESPERAR-TE 10 SEGONS");
           }, 10000); //setTimout que ens mostra un alert passat els 10000 milisegons
           pagina_cuaternaria.document.getElementById("partidesP").innerText =
             "Partides perdudes: " + partidasP; //mostra les partides perdudes
-          pagina_cuaternaria.document.getElementById("partidesPerdudes").innerText =
-          "Partides perdudes: " + partidas_perdidas; 
+          pagina_cuaternaria.document.getElementById(
+            "partidesPerdudes"
+          ).innerText = "Partides perdudes: " + partidas_perdidas;
           setTimeout(function () {
             document.getElementById("introduir_lletra").style.display =
               "inline";
@@ -260,7 +260,6 @@ function introduirLletra() {
         pos = palabraelegida.indexOf(lletra, pos + 1); //indiquem que busqui la nova posició de la lletra a partir de la anterior + 1
         // és a dir si la lletra estaba en la pos 2, seguirem buscant a partir de la pos 3
       }
-
     }
   }
   console.log(palabraD);
